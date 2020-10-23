@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import xmu.vis.domain.*;
 import xmu.vis.mapper.*;
 import xmu.vis.service.VisService;
-
+import xmu.vis.service.*;
 import xmu.vis.controller.VO.*;
 
 
@@ -62,6 +62,19 @@ public class VisController {
 
     @Autowired
     private EquipmentAllocationMapper equipmentAllocationMapper;
+
+    /*
+    获取所有待审核的关系
+     */
+    @GetMapping("/AllUncheckedRelation")
+    public Object getAllUncheckedRelation(){
+        List<RelationCheck> allUncheckedRelation = visService.getAllUncheckedRelation();
+        if(allUncheckedRelation.size()==0){
+            return ResponseUtil.fail();
+        }
+        return ResponseUtil.ok(allUncheckedRelation);
+    }
+
 
     // 查询所有节点信息
     @GetMapping("/queryAllNode")
@@ -312,19 +325,25 @@ public class VisController {
                 if(unitSequenceMapper.modifyAttributeValue(requestId, AttributeObject)==1){
                     return ResponseUtil.ok();
                 }
-                else return ResponseUtil.fail();
+                else{
+                    return ResponseUtil.fail();
+                }
             }
             else if(requestNodeInfo.getLabel() == 1){//更改Person属性
                 if (characterDataMapper.modifyAttributeValue(requestId, AttributeObject)==1){
                     return ResponseUtil.ok();
                 }
-                else return ResponseUtil.fail();
+                else {
+                    return ResponseUtil.fail();
+                }
             }
             else if(requestNodeInfo.getLabel() == 2){//更改EquipmentTree属性
                 if (equipmentTreeMapper.modifyAttributeValue(requestId, AttributeObject) == 1){
                     return ResponseUtil.ok();
                 }
-                else return ResponseUtil.fail();
+                else {
+                    return ResponseUtil.fail();
+                }
             }
         }
         return ResponseUtil.fail();

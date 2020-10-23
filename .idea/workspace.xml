@@ -29,8 +29,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5be4674e-41dd-46f0-9b89-fa4c199167d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/RelationCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/RelationCheck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/RelationCheckMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/RelationCheckMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/controller/VisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/controller/VisController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,7 +299,7 @@
       <workItem from="1603431459215" duration="1915000" />
       <workItem from="1603436372368" duration="255000" />
       <workItem from="1603436648253" duration="3995000" />
-      <workItem from="1603442507573" duration="1590000" />
+      <workItem from="1603442507573" duration="2306000" />
     </task>
     <servers />
   </component>
