@@ -8,7 +8,7 @@ import java.io.Serializable;
 // 关系审核类
 public class RelationCheck {
 
-    private Integer UncheckedId;   // 待审核关系的ID
+    private Integer UnCheckedId;   // 待审核关系的ID
 
     private String StartNodeName;   // 起始节点名称
 

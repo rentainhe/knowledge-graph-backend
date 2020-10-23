@@ -29,6 +29,8 @@ import static javax.swing.UIManager.put;
 @Service
 public class VisService {
 
+    @Autowired
+    private RelationCheckMapper relationCheckMapper;
 
     @Autowired
     private AttributeMapper attributeMapper;
@@ -59,6 +61,11 @@ public class VisService {
 
     @Autowired
     private EquipmentAllocationMapper equipmentAllocationMapper;
+
+    // 返回所有待审核的节点
+    public List<RelationCheck> getAllUncheckedRelation(){
+        return relationCheckMapper.getAllUncheckedRelation();
+    }
 
     //判断 关系三元组 是否存在
     public Boolean checkRelationExist(RelationTuple requestRelationTuple){

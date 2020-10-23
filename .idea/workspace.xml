@@ -28,45 +28,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5be4674e-41dd-46f0-9b89-fa4c199167d9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/junitgenerator-prj-settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/BiographicalInformation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/EquipmentAllocation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/EquipmentTree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/EquipmentType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/NodeLabel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/PersonnelInformation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/UnitSequence.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/BiographicalInformationMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/EquipmentAllocationMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/EquipmentTreeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/EquipmentTypeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/NodeLabelMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/PersonnelInformationMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/RelationTypeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/UnitSequenceMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/BiographicalInformationMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/EquipmentAllocationMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/EquipmentTreeMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/EquipmentTypeMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/PersonnelInformationMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/UnitSequenceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KnowledgeGraphVis-mysql.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/VisApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/VisApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/controller/VisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/controller/VisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/NodeInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/NodeInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/NodeRelationInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/mapper/NodeRelationInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/service/VisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/service/VisService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/xmu/vis/service/VisServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/xmu/vis/service/VisServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/controller/VisController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/xmu/vis/controller/VisController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/NodeInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/NodeInfoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/NodeRelationInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/NodeRelationInfoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/service/VisService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/xmu/vis/service/VisService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/xmu/vis/service/VisServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/xmu/vis/service/VisServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/RelationCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/domain/RelationCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/RelationCheckMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/RelationCheckMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,17 +130,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -346,7 +299,8 @@
       <workItem from="1603420845421" duration="7244000" />
       <workItem from="1603431459215" duration="1915000" />
       <workItem from="1603436372368" duration="255000" />
-      <workItem from="1603436648253" duration="3206000" />
+      <workItem from="1603436648253" duration="3995000" />
+      <workItem from="1603442507573" duration="1590000" />
     </task>
     <servers />
   </component>
@@ -423,29 +377,33 @@
     <state x="168" y="253" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1595856906925" />
     <state x="172" y="228" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1601806616382" />
     <state x="2135" y="285" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601882535714" />
-    <state width="1877" height="241" key="GridCell.Tab.0.bottom" timestamp="1603425494470">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1493" height="235" key="GridCell.Tab.0.bottom" timestamp="1603440646507">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
     <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1595234994429" />
+    <state width="1493" height="235" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603440646507" />
     <state width="1877" height="241" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603425494470" />
-    <state width="1877" height="241" key="GridCell.Tab.0.center" timestamp="1603425494470">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1493" height="235" key="GridCell.Tab.0.center" timestamp="1603440646507">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
     <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1595234994429" />
+    <state width="1493" height="235" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603440646507" />
     <state width="1877" height="241" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603425494470" />
-    <state width="1877" height="241" key="GridCell.Tab.0.left" timestamp="1603425494470">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1493" height="235" key="GridCell.Tab.0.left" timestamp="1603440646507">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
     <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1595234994429" />
+    <state width="1493" height="235" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603440646507" />
     <state width="1877" height="241" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603425494470" />
-    <state width="1877" height="241" key="GridCell.Tab.0.right" timestamp="1603425494470">
-      <screen x="1920" y="0" width="1920" height="1080" />
+    <state width="1493" height="235" key="GridCell.Tab.0.right" timestamp="1603440646507">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
     <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1595234994429" />
+    <state width="1493" height="235" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603440646507" />
     <state width="1877" height="241" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603425494470" />
     <state width="1877" height="198" key="GridCell.Tab.1.bottom" timestamp="1603376102703">
       <screen x="1920" y="0" width="1920" height="1080" />
