@@ -64,6 +64,22 @@ public class VisController {
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
     /*
+      将Excel中上传的所有的关系插入待审核关系表
+     */
+    @PostMapping("/InsertUncheckedRelation")
+    public Object insertUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
+        if (relationChecks.isEmpty()) {
+            return ResponseUtil.fail(-1,"the upload Excel data can't be empty");
+        }
+        else{
+            for (int i=0; i< relationChecks.size(); i++){
+                visService.insertUncheckedRelation(relationChecks.get(i)); // java里list用.get()方法获取对应下标元
+            }
+            return ResponseUtil.ok();
+        }
+    }
+
+    /*
     获取所有待审核的关系
      */
     @GetMapping("/AllUncheckedRelation")

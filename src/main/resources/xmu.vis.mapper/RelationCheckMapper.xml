@@ -6,9 +6,10 @@
         select 待审核ID as UnCheckedID, 起始节点 as StartNodeName, 起始节点类型 as StartNodeType, 终止节点 as EndNodeName, 终止节点类型 as EndNodeType, 关系 as Relation  from 待审核关系
     </select>
 
-    <select id="getANodeInfoById" resultType="xmu.vis.domain.NodeInfo" parameterType="String">
-        select 节点ID as nodeId,节点类型 as label, 节点名称 as nodeName from 节点信息 where 节点ID=#{theNodeId}
-    </select>
+    <insert id="insertUncheckedRelation" parameterType="xmu.vis.domain.RelationCheck">
+        insert into 待审核关系(待审核ID, 起始节点, 起始节点类型, 终止节点, 终止节点类型, 关系)
+        values (#{UnCheckedId}, #{StartNodeName}, #{StartNodeType}, #{EndNodeName}, #{EndNodeType}, #{Relation})
+    </insert>
 
     <select id="getANodeInfoByName" resultType="xmu.vis.domain.NodeInfo" parameterType="String">
         select 节点ID as nodeId,节点类型 as label, 节点名称 as nodeName from 节点信息 where 节点名称=#{theNodeName}

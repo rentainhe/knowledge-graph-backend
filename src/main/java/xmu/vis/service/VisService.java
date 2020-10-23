@@ -62,6 +62,11 @@ public class VisService {
     @Autowired
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
+    // 节点
+    public Integer insertUncheckedRelation(RelationCheck relationCheck){
+        return relationCheckMapper.insertUncheckedRelation(relationCheck);
+    }
+
     // 返回所有待审核的节点
     public List<RelationCheck> getAllUncheckedRelation(){
         return relationCheckMapper.getAllUncheckedRelation();
