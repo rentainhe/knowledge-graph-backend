@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.vis.mapper.AttributeMapper">
+
+    <select id="getAttributeById" resultType="map">
+        select * from ${tableName}
+        where id=#{id};
+    </select>
+
+    <update id="deleteAttribute" parameterType="String">
+        alter table ${tableName}
+        drop column ${attributeName}
+    </update>
+
+    <update id="addAttribute" parameterType="String">
+        alter table ${tableName}
+        add ${attributeName} varchar(20)
+    </update>
+
+    <update id="createTable" parameterType="String">
+        create TABLE ${tableName}(
+            id int(10) not null auto_increment,
+
+            primary key (id)
+        )
+    </update>
+
+    <select id="existTable" parameterType="String" resultType="Integer">
+        select count(*)
+        from information_schema.TABLES
+        where LCASE(table_name)=#{tableName}
+    </select>
+
+    <select id="getAllAttributeByName" parameterType="String" resultType="String">
+        select COLUMN_NAME from information_schema.COLUMNS where LCASE(table_name)=#{tableName}
+    </select>
+
+    <update id="updateColumn">
+        alter table ${tableName}
+        change column ${oldName} ${newName} varchar(20)
+    </update>
+
+    <update id="updateAttribute">
+        update ${tableName}
+        <set>
+            <foreach collection="map.entrySet()" index="key" item="value" separator=",">
+                <if test="key != 'id' and value != null">
+                    ${key} = #{value}
+                </if>
+            </foreach>
+        </set>
+        where id = #{id}
+
+    </update>
+    
+    <update id="deleteTable" parameterType="String">
+        drop table ${tableName}
+    </update>
+
+    <insert id="insertInfo">
+        insert into ${tableName}
+        <foreach collection="map.keys" item="key" open="(" close=")"
+                 separator=",">
+            ${key}
+        </foreach>
+        values
+        <foreach collection="map.values" item="value" open="("
+                 close=")" separator=",">
+            #{value}
+        </foreach>
+    </insert>
+
+</mapper>

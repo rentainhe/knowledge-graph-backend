@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.vis.mapper.EquipmentTypeMapper">
+
+    <select id="getRootNode" resultType="EquipmentType">
+        select 装备类型ID as equipmentTypeId,  PID as pid, 装备类型 as equipmentType
+        from 装备类型
+        where 装备类型ID = PID
+    </select>
+
+    <select id="getAllEquipmentType" resultType="EquipmentType">
+        select 装备类型ID as equipmentTypeId,  PID as pid, 装备类型 as equipmentType
+        from 装备类型
+    </select>
+
+    <select id="getEquipmentTypeById" parameterType="String" resultType="EquipmentType">
+        select 装备类型ID as equipmentTypeId,  PID as pid, 装备类型 as equipmentType
+        from 装备类型
+        where 装备类型ID = #{equipmentTypeId}
+    </select>
+
+    <select id="getEquipmentTypeByName" parameterType="String" resultType="EquipmentType">
+        select 装备类型ID as equipmentTypeId,  PID as pid, 装备类型 as equipmentType
+        from 装备类型
+        where 装备类型 = #{equipmentTypeName}
+    </select>
+
+    <insert id="insertEquipmentType" parameterType="String">
+        insert into 装备类型(装备类型ID, PID, 装备类型)
+        values (#{equipmentTypeId}, #{pid}, #{equipmentType})
+    </insert>
+
+    <delete id="deleteEquipmentType" parameterType="String">
+        delete from 装备类型
+        where 装备类型 = #{equipmentTypeName}
+    </delete>
+
+    <update id="insertAttributeName" parameterType="String">
+        alter table 装备类型
+        add column ${attributeName} varchar(30)
+    </update>
+
+    <update id="deleteAttributeName" parameterType="String">
+        alter table 装备类型
+        drop column ${attributeName}
+    </update>
+
+    <update id="modifyAttributeName">
+        alter table 装备类型
+        change column ${oldAttributeName} ${newAttributeName} varchar(30)
+    </update>
+
+    <update id="modifyAttributeValue">
+        update 装备类型
+        <set>
+            <foreach collection="map.entrySet()" index="key" item="value" separator=",">
+                <if test="key != '装备ID' and value != null">
+                    ${key} = #{value}
+                </if>
+            </foreach>
+        </set>
+        where 装备类型 = #{equipmentTypeName}
+    </update>
+
+</mapper>

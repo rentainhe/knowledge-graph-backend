@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xmu.vis.mapper.RelationCheckMapper">
+
+    <select id="getAllUncheckedRelation" resultType="xmu.vis.domain.RelationCheck">
+        select 待审核ID as nodeId,节点类型 as label, 节点名称 as nodeName from 节点信息
+    </select>
+
+    <select id="getANodeInfoById" resultType="xmu.vis.domain.NodeInfo" parameterType="String">
+        select 节点ID as nodeId,节点类型 as label, 节点名称 as nodeName from 节点信息 where 节点ID=#{theNodeId}
+    </select>
+
+    <select id="getANodeInfoByName" resultType="xmu.vis.domain.NodeInfo" parameterType="String">
+        select 节点ID as nodeId,节点类型 as label, 节点名称 as nodeName from 节点信息 where 节点名称=#{theNodeName}
+    </select>
+</mapper>
