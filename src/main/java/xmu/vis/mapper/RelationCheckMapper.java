@@ -15,4 +15,6 @@ public interface RelationCheckMapper {
 
     public Integer insertUncheckedRelation(RelationCheck relationCheck);
 
+    public Integer deleteUncheckedRelation(RelationCheck relationCheck);
+
 }

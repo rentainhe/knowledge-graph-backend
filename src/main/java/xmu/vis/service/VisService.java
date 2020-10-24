@@ -62,7 +62,12 @@ public class VisService {
     @Autowired
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
-    // 节点
+    // 删除待审核节点
+    public Integer deleteUncheckedRelation(RelationCheck relationCheck){
+        return relationCheckMapper.deleteUncheckedRelation(relationCheck);
+    }
+
+    // 插入待审核节点
     public Integer insertUncheckedRelation(RelationCheck relationCheck){
         return relationCheckMapper.insertUncheckedRelation(relationCheck);
     }

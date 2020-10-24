@@ -11,7 +11,8 @@
         values (#{unCheckedId}, #{startNodeName}, #{startNodeType}, #{endNodeName}, #{endNodeType}, #{relation})
     </insert>
 
-    <select id="deleteUncheckedRelation" resultType="xmu.vis.domain.NodeInfo" parameterType="String">
-        select 节点ID as nodeId,节点类型 as label, 节点名称 as nodeName from 节点信息 where 节点名称=#{theNodeName}
-    </select>
+    <delete id="deleteUncheckedRelation" parameterType="xmu.vis.domain.RelationCheck">
+        delete from 待审核关系 where 待审核ID=#{unCheckedId}
+    </delete>
+
 </mapper>
