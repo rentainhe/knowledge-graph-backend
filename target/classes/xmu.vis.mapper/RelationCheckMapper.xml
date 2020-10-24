@@ -7,8 +7,8 @@
     </select>
 
     <insert id="insertUncheckedRelation" parameterType="xmu.vis.domain.RelationCheck">
-        insert into 待审核关系(待审核ID, 起始节点, 起始节点类型, 终止节点, 终止节点类型, 关系)
-        values (#{UnCheckedId}, #{StartNodeName}, #{StartNodeType}, #{EndNodeName}, #{EndNodeType}, #{Relation})
+        insert into 待审核关系(待审核ID, 起始节点名称, 起始节点类型, 终止节点名称, 终止节点类型, 节点间关系)
+        values (#{unCheckedId}, #{startNodeName}, #{startNodeType}, #{endNodeName}, #{endNodeType}, #{relation})
     </insert>
 
     <select id="getANodeInfoByName" resultType="xmu.vis.domain.NodeInfo" parameterType="String">
