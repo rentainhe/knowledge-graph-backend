@@ -6,7 +6,7 @@
         select 父节点ID as fatherId, 父节点名称 as fatherName, 子节点ID as childId, 子节点名称 as childName, 关系名称 as relationName from 关系三元组
     </select>
 
-    <select id="queryAllRelationType" resultType="String">
+    <select id="getAllRelationTypeSet" resultType="String">
         select 关系名称 as relationName from 关系三元组
     </select>
 
