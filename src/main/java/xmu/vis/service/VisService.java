@@ -1,6 +1,7 @@
 package xmu.vis.service;
 
 import com.alibaba.druid.sql.dialect.oracle.ast.expr.OracleSizeExpr;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.apache.ibatis.jdbc.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,7 @@ import xmu.vis.controller.VO.*;
 import javax.xml.soap.Node;
 import javax.xml.transform.Result;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static javax.swing.UIManager.put;
 
@@ -63,14 +61,41 @@ public class VisService {
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
     // 将待审核的关系添加至数据库中
-//    public Integer updataDatabaseByUncheckedRelation(RelationCheck relationCheck){
-//        String FatherName = relationCheck.getStartNodeName();
-//        String ChildName = relationCheck.getEndNodeName();
-//        List<RelationTuple> relationTuples = relationTupleMapper.getRelationByFatherNameandChildName(FatherName, ChildName);
-//        if(relationTuples.size()==0){ // 当这两个节点之间没有关系的时候
-//
-//        }
-//    }
+    public Integer updataDatabaseByUncheckedRelation(RelationCheck relationCheck){
+        String FatherName = relationCheck.getStartNodeName(); // 获得父节点名称
+        String ChildName = relationCheck.getEndNodeName();  // 获得子结点名称
+        List<RelationTuple> relationTuples = relationTupleMapper.getRelationByFatherNameandChildName(FatherName, ChildName); // 获取这两个名称的关系三元组
+        // 新建关系三元组
+        List<NodeInfo> FatherInfo = nodeInfoMapper.getANodeInfoByName(FatherName);
+        List<NodeInfo> ChildInfo = nodeInfoMapper.getANodeInfoByName(ChildName);
+        RelationTuple relationTuple = new RelationTuple(); // 创建新的 relationTuple
+        relationTuple.setFatherId(FatherInfo.get(0).getNodeId());
+        relationTuple.setChildId(ChildInfo.get(0).getNodeId());
+        relationTuple.setFatherName(FatherInfo.get(0).getNodeName());
+        relationTuple.setChildName(ChildInfo.get(0).getNodeName());
+        relationTuple.setRelationName(relationCheck.getRelation());
+        //
+        if(relationTuples.size()==0){ // 当这两个节点之间没有关系的时候，直接添加关系
+            if(relationTupleMapper.addNewRelation(relationTuple)==1){
+                return 1;
+            }
+            else{
+                System.out.println("Fail to add RelationTuple");
+                return 0;
+            }
+        }
+        else if(relationTuples.size()>0){ // 这两个节点之间已经有关系，得这个新添加的关系是否已经存在
+            if(new Boolean(checkRelationExist(relationTuple))){ // 如果已经存在的话，则不添加
+                System.out.println("Relation already Exists");
+                return 0;
+            }
+            else{
+                relationTupleMapper.addNewRelation(relationTuple);
+                return 1;
+            }
+        }
+        return 0;
+    }
 
 
     // 更新待审核关系
@@ -112,7 +137,123 @@ public class VisService {
         // 存在返回true 不存在返回false
     }
 
+    //根据节点ID 返回该节点所有一阶关系
+    public List<RelationTuple> getAlloneStageRelationTuple(String nodeId){
+        List<RelationTuple> oneStageRelationTuple = getRelationByChildId(nodeId);
+        oneStageRelationTuple.addAll(getRelationByFatherId(nodeId));
+        return oneStageRelationTuple;
+    }
+    //查询
 
+    //mapper层到service层的复现
+    //unitSequenceMapper
+    public List<UnitSequence> getAllUnitSequence(){
+        return unitSequenceMapper.getAllUnitSequence();
+    }
+    public UnitSequence getUnitSequenceById(String unitId){
+        return unitSequenceMapper.getUnitSequenceById(unitId);
+    }
+    public UnitSequence getUnitSequenceByFullName(String unitFullName){
+        return unitSequenceMapper.getUnitSequenceByFullName(unitFullName);
+    }
+    public List<UnitSequence> getUnitSequenceByName(String unitName){
+        return unitSequenceMapper.getUnitSequenceByName(unitName);
+    }
+    public Integer insertUnitSequence(UnitSequence unitSequence){
+        return unitSequenceMapper.insertUnitSequence(unitSequence);
+    }
+    public Integer deleteUnitSequence(String unitFullName){
+        return unitSequenceMapper.deleteUnitSequence(unitFullName);
+    }
+    public Integer modifyUnitSequenceAttributeValue(String unitId, Map<String, String> map){
+        return unitSequenceMapper.modifyAttributeValue(unitId, map);
+    }
+
+    //characterDataMapper
+    public CharacterData getCharacterDataById(String personId){
+        return characterDataMapper.getCharacterDataById(personId);
+    }
+    public List<CharacterData> getCharacterDataByName(String personName){
+        return characterDataMapper.getCharacterDataByName(personName);
+    }
+    public Integer insertCharacterData(CharacterData newCharacterData){
+        return characterDataMapper.insertCharacterData(newCharacterData);
+    }
+    public Integer deleteCharacterData(CharacterData characterData){
+        return characterDataMapper.deleteCharacterData(characterData);
+    }//通过人员ID与人员姓名 定位
+    public Integer modifyCharacterDataAttributeValue(String personId, Map<String, String> map){
+        return characterDataMapper.modifyAttributeValue(personId, map);
+    }//通过人员ID 定位
+
+    //equipmentTreeMapper
+    public EquipmentTree getEquipmentTreeById(String equipmentId){
+        return equipmentTreeMapper.getEquipmentById(equipmentId);
+    }
+    public List<EquipmentTree> getEquipmentTreeByName(String equipmentName){
+        return equipmentTreeMapper.getEquipmentByName(equipmentName);
+    }
+    public Integer insertEquipmentTree(EquipmentTree equipmentTree){
+        return equipmentTreeMapper.insertEquipmentTree(equipmentTree);
+    }
+    public Integer deleteEquipmentTree(EquipmentTree equipmentTree) {
+        return equipmentTreeMapper.deleteEquipmentTree(equipmentTree);
+    } //通过 装备ID与装备名称 定位
+    public Integer modifyEquipmentTreeAttributeValue(String equipmentId, Map<String, String> map){
+        return equipmentTreeMapper.modifyAttributeValue(equipmentId, map);
+    }//通过装备ID 定位
+
+    //relationTupleMapper
+    public List<RelationTuple> getAllRelationTuple(){
+        return relationTupleMapper.getAllRelation();
+    }
+    public Set<String> getAllRelationTypeSet(){
+        return relationTupleMapper.getAllRelationTypeSet();
+    }//获取关系类型集合
+
+    public List<RelationTuple> getRelationByChildId(String childId){
+        return relationTupleMapper.getRelationByChildId(childId);
+    }//根据 子节点ID 获得关系
+    public List<RelationTuple> getRelationByChildName(String child_Name){
+        return relationTupleMapper.getRelationByChildName(child_Name);
+    }//根据 子节点名称 获得关系
+    public List<RelationTuple> getRelationByFatherId(String father_Id) {
+        return relationTupleMapper.getRelationByFatherId(father_Id);
+    }//根据 父节点ID 获得关系
+    public List<RelationTuple> getRelationByFatherName(String father_Name){
+        return relationTupleMapper.getRelationByFatherName(father_Name);
+    }//根据 父节点名称 获得关系
+    public List<RelationTuple> getRelationByFatherIdandChildId(String father_Id, String child_Id){
+        return relationTupleMapper.getRelationByFatherIdandChildId(father_Id, child_Id);
+    }//根据 父子Id 获得关系
+    public List<RelationTuple> getRelationByFatherNameandChildName(String father_Name, String child_Name) {
+        return relationTupleMapper.getRelationByFatherNameandChildName(father_Name, child_Name);
+    }//根据 父子Name 获得关系
+
+    public RelationTuple checkRelationTupleexist(RelationTuple relationTuple){
+        return relationTupleMapper.checkRelationTupleexist(relationTuple);
+    }//检查<关系三元组>表中是否存在该关系(默认存在只有一个)
+
+    public Integer addNewRelation(RelationTuple newRelation){
+        return relationTupleMapper.addNewRelation(newRelation);
+    }//增加没有的关系
+    public Integer deleteExistRelation(RelationTuple targetRelation){
+        return relationTupleMapper.deleteExistRelation(targetRelation);
+    }//删除已有的关系
+    public Integer updateRelation(RelationTuple oldRelationTuple, String newRelationName){
+        return relationTupleMapper.updateRelation(oldRelationTuple, newRelationName);
+    }//更改已有的关系名称
+
+    //nodeInfoMapper
+    public List<NodeInfo> getAllNodeInfo(){
+        return nodeInfoMapper.getAllNodeInfo();
+    }
+    public NodeInfo getANodeInfoById(String theNodeId){
+        return nodeInfoMapper.getANodeInfoById(theNodeId);
+    }
+    public List<NodeInfo> getANodeInfoByName(String theNodeName){
+        return nodeInfoMapper.getANodeInfoByName(theNodeName);
+    }
 
 /*
     public static HashMap<String, Object> nameToLabel = new HashMap<String, Object>() {
