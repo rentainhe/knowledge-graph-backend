@@ -136,17 +136,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AttributeMapperTest.getAttributeById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="KnowledgeGraphVis-mysql" />
       <extension name="coverage">
