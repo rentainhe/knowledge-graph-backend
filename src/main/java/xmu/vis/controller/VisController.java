@@ -134,7 +134,7 @@ public class VisController {
     }
 
 
-    // 增加关系 (*目前只能对已有节点进行添加关系操作)(***目前只能操作"关系三元组"表的数据)
+    //增加关系 (*目前只能对已有节点进行添加关系操作)(***目前只能操作"关系三元组"表的数据)
     @PostMapping("/addRelationTuple")
     public Object addRelationTuple(@RequestBody RelationTuple newRelationTuple){
         //判断节点是否存在
@@ -166,7 +166,7 @@ public class VisController {
         }
         return ResponseUtil.fail();
     }
-    // 更改关系 (***目前只能操作"关系三元组"表的数据)
+    //更改关系 (***目前只能操作"关系三元组"表的数据)
     @PostMapping("/changeRelation/{newRelationName}")
     public Object changeRelaiton(@PathVariable String newRelationName,
                                  @RequestBody RelationTuple oldRelationTuple){
