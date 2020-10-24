@@ -17,4 +17,8 @@ public interface RelationCheckMapper {
 
     public Integer deleteUncheckedRelation(RelationCheck relationCheck);
 
+    public RelationCheck getUncheckedRelationById(String unCheckedId);
+
+    public Integer updataUncheckedRelationById(RelationCheck relationCheck);
+
 }
