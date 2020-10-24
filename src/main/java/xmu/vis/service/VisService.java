@@ -62,9 +62,14 @@ public class VisService {
     @Autowired
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
-//    // 将待审核的关系添加至数据库中
+    // 将待审核的关系添加至数据库中
 //    public Integer updataDatabaseByUncheckedRelation(RelationCheck relationCheck){
+//        String FatherName = relationCheck.getStartNodeName();
+//        String ChildName = relationCheck.getEndNodeName();
+//        List<RelationTuple> relationTuples = relationTupleMapper.getRelationByFatherNameandChildName(FatherName, ChildName);
+//        if(relationTuples.size()==0){ // 当这两个节点之间没有关系的时候
 //
+//        }
 //    }
 
 
