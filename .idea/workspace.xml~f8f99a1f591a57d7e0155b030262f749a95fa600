@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="KnowledgeGraphVis-mysql(final):jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5be4674e-41dd-46f0-9b89-fa4c199167d9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/controller/VisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/controller/VisController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/service/VisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/service/VisService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/RelationCheckMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/controller/VisController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/RelationCheckMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/service/VisService.class" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/RelationCheckMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/xmu.vis.mapper/RelationCheckMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/AttributeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/CharacterDataMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/EquipmentAllocationMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/EquipmentTreeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/EquipmentTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/NodeInfoMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/PersonnelInformationMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/RelationCheckMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/RelationTupleMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/RelationTypeMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/UnitSequenceMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/VisApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/controller/VO/ResultList.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/controller/VisController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/CharacterData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/EquipmentAllocation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/EquipmentTree.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/EquipmentType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/NodeInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/PersonnelInformation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/RelationCheck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/RelationTuple.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/RelationType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/UnitSequence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/AttributeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/CharacterDataMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/EquipmentAllocationMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/EquipmentTreeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/EquipmentTypeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/NodeInfoMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/PersonnelInformationMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/RelationCheckMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/RelationTupleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/RelationTypeMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/UnitSequenceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/service/ModelService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/service/VisService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/utils/ParseUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/utils/ResponseUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/utils/testUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/vo/ResNode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/vo/ResNodeType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/vo/ResRelation.class" beforeDir="false" />
+>>>>>>> ee523060a679472fa1e0874343d59ef4cd0fa643
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="DevPartner.ProjectWorkspace">
+    <option name="runtimeAnalysisType" value="-1" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="XML File" />
+        <option value="JUnit4 Test Class" />
+        <option value="Tag Library Descriptor" />
+        <option value="FxmlFile" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\repo" />
+        <option name="mavenHome" value="E:\各种软件安装\IDEA\IntelliJ IDEA 2020.2.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1cq0pUFM69dx7uveOBsjVO6Aw6X" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.3785377" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="xmu.vis.service" />
+      <recent name="xmu.vis.mapper" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\米芃\Desktop\MAC\KnowledgeGraphVis-mysql(1)\src\main\resources\xmu.vis.mapper" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.VisApplication">
+    <configuration name="VisApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="xmu.vis.VisApplication" />
+      <module name="KnowledgeGraphVis-mysql(final)" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xmu.vis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AttributeMapperTest.getAttributeById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KnowledgeGraphVis-mysql" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xmu.vis.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="xmu.vis.mapper" />
+      <option name="MAIN_CLASS_NAME" value="xmu.vis.mapper.AttributeMapperTest" />
+      <option name="METHOD_NAME" value="getAttributeById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NodeInfoMapperTest.getNodeInfoById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KnowledgeGraphVis-mysql" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xmu.vis.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="xmu.vis.mapper" />
+      <option name="MAIN_CLASS_NAME" value="xmu.vis.mapper.NodeInfoMapperTest" />
+      <option name="METHOD_NAME" value="getNodeInfoById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VisServiceTest.getNodeNameByFatherNodeAndRelation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KnowledgeGraphVis-mysql" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xmu.vis.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="xmu.vis.service" />
+      <option name="MAIN_CLASS_NAME" value="xmu.vis.service.VisServiceTest" />
+      <option name="METHOD_NAME" value="getNodeNameByFatherNodeAndRelation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="KnowledgeGraphVis-mysql" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="xmu.vis.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="xmu.vis.VisApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.VisApplication" />
+        <item itemvalue="JUnit.NodeInfoMapperTest.getNodeInfoById" />
+        <item itemvalue="JUnit.VisServiceTest.getNodeNameByFatherNodeAndRelation" />
+        <item itemvalue="Spring Boot.VisApplication" />
+        <item itemvalue="JUnit.AttributeMapperTest.getAttributeById" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5be4674e-41dd-46f0-9b89-fa4c199167d9" name="Default Changelist" comment="" />
+      <created>1591240998492</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1591240998492</updated>
+      <workItem from="1591241002347" duration="1476000" />
+      <workItem from="1591257212666" duration="57000" />
+      <workItem from="1591345181455" duration="10453000" />
+      <workItem from="1591409034014" duration="15079000" />
+      <workItem from="1591429682702" duration="615000" />
+      <workItem from="1591489589582" duration="5250000" />
+      <workItem from="1591549820978" duration="5070000" />
+      <workItem from="1591577792744" duration="1486000" />
+      <workItem from="1591586252259" duration="329000" />
+      <workItem from="1591615803419" duration="816000" />
+      <workItem from="1591756386094" duration="3611000" />
+      <workItem from="1591772707224" duration="516000" />
+      <workItem from="1591806928710" duration="4412000" />
+      <workItem from="1591843793938" duration="12862000" />
+      <workItem from="1591868229283" duration="303000" />
+      <workItem from="1591875662069" duration="3015000" />
+      <workItem from="1591882924403" duration="1900000" />
+      <workItem from="1591965057073" duration="5904000" />
+      <workItem from="1591973664031" duration="639000" />
+      <workItem from="1592013092030" duration="862000" />
+      <workItem from="1592019456308" duration="2310000" />
+      <workItem from="1592041296329" duration="158000" />
+      <workItem from="1593574391222" duration="2019000" />
+      <workItem from="1594440542523" duration="2706000" />
+      <workItem from="1594481400945" duration="1454000" />
+      <workItem from="1594515708996" duration="10626000" />
+      <workItem from="1594528474593" duration="258000" />
+      <workItem from="1594528752347" duration="357000" />
+      <workItem from="1594529128139" duration="382000" />
+      <workItem from="1594529527873" duration="16000" />
+      <workItem from="1594560697746" duration="998000" />
+      <workItem from="1594561719757" duration="255000" />
+      <workItem from="1594561994848" duration="4142000" />
+      <workItem from="1594632314966" duration="1293000" />
+      <workItem from="1594801863084" duration="836000" />
+      <workItem from="1594810009066" duration="473000" />
+      <workItem from="1594882740278" duration="159000" />
+      <workItem from="1594892440617" duration="1253000" />
+      <workItem from="1595081775254" duration="41211000" />
+      <workItem from="1595388275143" duration="1797000" />
+      <workItem from="1595551581083" duration="3079000" />
+      <workItem from="1595728103835" duration="5929000" />
+      <workItem from="1595843057272" duration="1701000" />
+      <workItem from="1595856939710" duration="763000" />
+      <workItem from="1597821538544" duration="19264000" />
+      <workItem from="1598238286846" duration="15821000" />
+      <workItem from="1598510071850" duration="3446000" />
+      <workItem from="1601803896412" duration="694000" />
+      <workItem from="1601804946702" duration="637000" />
+      <workItem from="1601806443046" duration="170000" />
+      <workItem from="1601808486838" duration="190000" />
+      <workItem from="1601808707750" duration="14264000" />
+      <workItem from="1601824553175" duration="38000" />
+      <workItem from="1601861730040" duration="11315000" />
+      <workItem from="1601885243046" duration="269000" />
+      <workItem from="1601885624153" duration="720000" />
+      <workItem from="1601886494910" duration="2364000" />
+      <workItem from="1601975587810" duration="84000" />
+      <workItem from="1602052937476" duration="11955000" />
+      <workItem from="1602122915852" duration="1719000" />
+      <workItem from="1602471912945" duration="9101000" />
+      <workItem from="1602492234998" duration="6091000" />
+      <workItem from="1602501803931" duration="621000" />
+      <workItem from="1602552528581" duration="23923000" />
+      <workItem from="1602592190303" duration="1180000" />
+      <workItem from="1602722936558" duration="2162000" />
+      <workItem from="1602764325027" duration="144000" />
+      <workItem from="1602764512241" duration="597000" />
+      <workItem from="1602768521702" duration="41000" />
+      <workItem from="1602822649528" duration="4990000" />
+      <workItem from="1602844375808" duration="126000" />
+      <workItem from="1602924099451" duration="4480000" />
+      <workItem from="1603009853680" duration="11000" />
+      <workItem from="1603009944577" duration="11739000" />
+      <workItem from="1603031069734" duration="2182000" />
+      <workItem from="1603108989133" duration="311000" />
+      <workItem from="1603328884033" duration="586000" />
+      <workItem from="1603330118493" duration="92000" />
+      <workItem from="1603330892806" duration="1067000" />
+      <workItem from="1603367039850" duration="3691000" />
+      <workItem from="1603420845421" duration="7244000" />
+      <workItem from="1603431459215" duration="1915000" />
+      <workItem from="1603436372368" duration="255000" />
+      <workItem from="1603436648253" duration="3995000" />
+      <workItem from="1603442507573" duration="5815000" />
+<<<<<<< HEAD
+      <workItem from="1603449586048" duration="5216000" />
+=======
+      <workItem from="1603449586048" duration="10507000" />
+>>>>>>> ee523060a679472fa1e0874343d59ef4cd0fa643
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2307" y="37" key="#Project_Structure" timestamp="1601861871969">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2307" y="37" key="#Project_Structure/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601861871969" />
+    <state x="2257" y="381" key="#SQL_Dialects" timestamp="1601865613723">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2257" y="381" key="#SQL_Dialects/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601865613723" />
+    <state x="48" y="122" width="816" height="672" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595730681963">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="-1859" y="631" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595249031568" />
+    <state x="48" y="122" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1500.960@0.0.1500.960" timestamp="1595730681963" />
+    <state x="2685" y="245" key="#com.intellij.ide.util.MemberChooser" timestamp="1603026055506">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2685" y="245" key="#com.intellij.ide.util.MemberChooser/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603026055506" />
+    <state x="-1323" y="634" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1595251365481">
+      <screen x="-1920" y="499" width="1920" height="1040" />
+    </state>
+    <state x="-1323" y="634" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595251365481" />
+    <state x="2493" y="363" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1601883448525">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="-1347" y="849" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595249403346" />
+    <state x="2493" y="363" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601883448525" />
+    <state x="2656" y="433" width="447" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1602494765730">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2656" y="433" width="447" height="221" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602494765730" />
+    <state x="2610" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1601813973381">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2610" y="286" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601813973381" />
+    <state x="2135" y="285" key="FileChooserDialogImpl" timestamp="1601882535714">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="168" y="253" key="FileChooserDialogImpl/0.0.1500.960@0.0.1500.960" timestamp="1595856906925" />
+    <state x="172" y="228" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1601806616382" />
+    <state x="2135" y="285" key="FileChooserDialogImpl/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601882535714" />
+<<<<<<< HEAD
+    <state width="1877" height="319" key="GridCell.Tab.0.bottom" timestamp="1603505790844">
+=======
+    <state width="1877" height="319" key="GridCell.Tab.0.bottom" timestamp="1603521195255">
+>>>>>>> ee523060a679472fa1e0874343d59ef4cd0fa643
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
+    <state width="1458" height="256" key="GridCell.Tab.0.bottom/0.0.1500.960@0.0.1500.960" timestamp="1595234994429" />
+    <state width="1493" height="235" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603440646507" />
+    <state width="1877" height="241" key="GridCell.Tab.0.bottom/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603425494470" />
+<<<<<<< HEAD
+    <state width="1877" height="319" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603505790844" />
+    <state width="1877" height="319" key="GridCell.Tab.0.center" timestamp="1603505790843">
+=======
+    <state width="1877" height="319" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1603521195255" />
+    <state width="1877" height="319" key="GridCell.Tab.0.center" timestamp="1603521195255">
+>>>>>>> ee523060a679472fa1e0874343d59ef4cd0fa643
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
+    <state width="1458" height="256" key="GridCell.Tab.0.center/0.0.1500.960@0.0.1500.960" timestamp="1595234994429" />
+    <state width="1493" height="235" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603440646507" />
+    <state width="1877" height="241" key="GridCell.Tab.0.center/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603425494470" />
+<<<<<<< HEAD
+    <state width="1877" height="319" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603505790843" />
+    <state width="1877" height="319" key="GridCell.Tab.0.left" timestamp="1603505790843">
+=======
+    <state width="1877" height="319" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1603521195255" />
+    <state width="1877" height="319" key="GridCell.Tab.0.left" timestamp="1603521195254">
+>>>>>>> ee523060a679472fa1e0874343d59ef4cd0fa643
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
+    <state width="1458" height="256" key="GridCell.Tab.0.left/0.0.1500.960@0.0.1500.960" timestamp="1595234994429" />
+    <state width="1493" height="235" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603440646507" />
+    <state width="1877" height="241" key="GridCell.Tab.0.left/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603425494470" />
+<<<<<<< HEAD
+    <state width="1877" height="319" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603505790843" />
+    <state width="1877" height="319" key="GridCell.Tab.0.right" timestamp="1603505790844">
+=======
+    <state width="1877" height="319" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1603521195254" />
+    <state width="1877" height="319" key="GridCell.Tab.0.right" timestamp="1603521195255">
+>>>>>>> ee523060a679472fa1e0874343d59ef4cd0fa643
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
+    <state width="1458" height="256" key="GridCell.Tab.0.right/0.0.1500.960@0.0.1500.960" timestamp="1595234994429" />
+    <state width="1493" height="235" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603440646507" />
+    <state width="1877" height="241" key="GridCell.Tab.0.right/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603425494470" />
+<<<<<<< HEAD
+    <state width="1877" height="319" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603505790844" />
+=======
+    <state width="1877" height="319" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1603521195255" />
+>>>>>>> ee523060a679472fa1e0874343d59ef4cd0fa643
+    <state width="1877" height="198" key="GridCell.Tab.1.bottom" timestamp="1603376102703">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
+    <state width="1877" height="198" key="GridCell.Tab.1.bottom/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603376102703" />
+    <state width="1877" height="198" key="GridCell.Tab.1.center" timestamp="1603376102703">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
+    <state width="1877" height="198" key="GridCell.Tab.1.center/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603376102703" />
+    <state width="1877" height="198" key="GridCell.Tab.1.left" timestamp="1603376102703">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
+    <state width="1877" height="198" key="GridCell.Tab.1.left/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603376102703" />
+    <state width="1877" height="198" key="GridCell.Tab.1.right" timestamp="1603376102703">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595329115196" />
+    <state width="1877" height="198" key="GridCell.Tab.1.right/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1603376102703" />
+    <state x="349" y="146" key="IDE.errors.dialog" timestamp="1603433512713">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="146" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1603433512713" />
+    <state x="366" y="117" width="914" height="707" key="SettingsEditor" timestamp="1603436629438">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="-1597" y="634" key="SettingsEditor/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595249646499" />
+    <state x="176" y="162" key="SettingsEditor/0.0.1500.960@0.0.1500.960" timestamp="1595857034160" />
+    <state x="366" y="117" width="914" height="707" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603436629438" />
+    <state x="2377" y="284" width="998" height="708" key="SettingsEditor/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602489810346" />
+    <state x="2522" y="467" key="classpath-attribute-editor" timestamp="1601881470403">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2522" y="467" key="classpath-attribute-editor/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601881470403" />
+    <state x="-762" y="766" width="459" height="371" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1595241404405">
+      <screen x="-1920" y="499" width="1920" height="1040" />
+    </state>
+    <state x="-762" y="766" width="459" height="371" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595241404405" />
+    <state x="-1282" y="616" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1595251400920">
+      <screen x="-1920" y="499" width="1920" height="1040" />
+    </state>
+    <state x="-1282" y="616" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1500.960/-1920.499.1920.1040@-1920.499.1920.1040" timestamp="1595251400920" />
+    <state x="2346" y="276" width="1067" height="641" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1601823517926">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2346" y="276" width="1067" height="641" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601823517926" />
+    <state x="2000" y="101" key="new project wizard" timestamp="1602488435062">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2000" y="101" key="new project wizard/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1602488435062" />
+    <state x="2207" y="410" key="run.anything.popup" timestamp="1601887206234">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2207" y="410" key="run.anything.popup/0.0.1536.864/1920.0.1920.1080@1920.0.1920.1080" timestamp="1601887206234" />
+    <state x="382" y="66" width="738" height="895" key="search.everywhere.popup" timestamp="1597834260439">
+      <screen x="0" y="0" width="1500" height="960" />
+    </state>
+    <state x="382" y="66" width="738" height="895" key="search.everywhere.popup/0.0.1500.960@0.0.1500.960" timestamp="1597834260439" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.apache.ibatis.exceptions.TooManyResultsException" package="org.apache.ibatis.exceptions" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$USER_HOME$/AppData/Local/Temp/tmp_2_RelationCheckMapper.class</url>
+          <line>21</line>
+          <properties class="xmu.vis.mapper.RelationCheckMapper" method="getUncheckedRelationById">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
