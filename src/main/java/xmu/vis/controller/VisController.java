@@ -221,6 +221,60 @@ public class VisController {
         return ResponseUtil.ok(result);
     }
 
+    //根据节点<名字>查询他的所有属性(存在同name不同node情况 ---> 返回多个对象)
+    @GetMapping("/getNodeAttributeByName/{requestNodeName}")
+    public Object getNodeAttributeByName(@PathVariable String requestNodeName){
+        List<NodeInfo> backNodeList= visService.getANodeInfoByName(requestNodeName);
+        if (backNodeList.size() == 0){
+            return ResponseUtil.fail(-1,"No node match this name!");
+        }
+        else {
+            ResultList resultlist = new ResultList();
+
+            resultlist.setUnitsequenceList(new ArrayList<>());
+            resultlist.setCharacterDataList(new ArrayList<>());
+            resultlist.setEquipmentList(new ArrayList<>());
+
+            for (NodeInfo backNode : backNodeList) {
+                switch (backNode.getLabel()) {
+                    case 0:
+                        List<UnitSequence> unitResult = visService.getUnitSequenceByName(requestNodeName);
+                        resultlist.addUnitSequence(unitResult);
+                        break;
+                    case 1:
+                        List<CharacterData> charcterResult = visService.getCharacterDataByName(requestNodeName);
+                        resultlist.addCharacterData(charcterResult);
+                        break;
+                    case 2:
+                        List<EquipmentTree> equipmentResult = visService.getEquipmentTreeByName(requestNodeName);
+                        resultlist.addEquipmentTree(equipmentResult);
+                        break;
+                }
+            }
+            return ResponseUtil.ok(resultlist);
+        }
+    }
+    //根据<节点Id>查询一个节点的所有属性(节点为唯一标识-->只返回一个对象)
+    @GetMapping("/getNodeAttributeById/{requestNodeId}")
+    public Object getNodeAttributeById(@PathVariable String requestNodeId){
+        NodeInfo backNode = visService.getANodeInfoById(requestNodeId);
+        if (backNode == null){
+            return ResponseUtil.fail(-1,"No node match this name!");
+        }
+        switch (backNode.getLabel()) {
+            case 0:
+                UnitSequence unitResult = visService.getUnitSequenceById(requestNodeId);
+                return ResponseUtil.ok(unitResult);
+            case 1:
+                CharacterData characterResult = visService.getCharacterDataById(requestNodeId);
+                return ResponseUtil.ok(characterResult);
+            case 2:
+                EquipmentTree equipmentResult = visService.getEquipmentTreeById(requestNodeId);
+                return ResponseUtil.ok(equipmentResult);
+        }
+        return ResponseUtil.fail();
+    }
+
 
     //增加 Unit 节点
     @PostMapping("addUnitNode")
@@ -308,59 +362,7 @@ public class VisController {
         }
     }
 
-    //根据节点<名字>查询他的所有属性(存在同name不同node情况 ---> 返回多个对象)
-    @GetMapping("/getNodeAttributeByName/{requestNodeName}")
-    public Object getNodeAttributeByName(@PathVariable String requestNodeName){
-        List<NodeInfo> backNodeList= visService.getANodeInfoByName(requestNodeName);
-        if (backNodeList.size() == 0){
-            return ResponseUtil.fail(-1,"No node match this name!");
-        }
-        else {
-            ResultList resultlist = new ResultList();
 
-            resultlist.setUnitsequenceList(new ArrayList<>());
-            resultlist.setCharacterDataList(new ArrayList<>());
-            resultlist.setEquipmentList(new ArrayList<>());
-
-            for (NodeInfo backNode : backNodeList) {
-                switch (backNode.getLabel()) {
-                    case 0:
-                        List<UnitSequence> unitResult = visService.getUnitSequenceByName(requestNodeName);
-                        resultlist.addUnitSequence(unitResult);
-                        break;
-                    case 1:
-                        List<CharacterData> charcterResult = visService.getCharacterDataByName(requestNodeName);
-                        resultlist.addCharacterData(charcterResult);
-                        break;
-                    case 2:
-                        List<EquipmentTree> equipmentResult = visService.getEquipmentTreeByName(requestNodeName);
-                        resultlist.addEquipmentTree(equipmentResult);
-                        break;
-                }
-            }
-            return ResponseUtil.ok(resultlist);
-        }
-    }
-    //根据<节点Id>查询一个节点的所有属性(节点为唯一标识-->只返回一个对象)
-    @GetMapping("/getNodeAttributeById/{requestNodeId}")
-    public Object getNodeAttributeById(@PathVariable String requestNodeId){
-        NodeInfo backNode = visService.getANodeInfoById(requestNodeId);
-        if (backNode == null){
-            return ResponseUtil.fail(-1,"No node match this name!");
-        }
-        switch (backNode.getLabel()) {
-            case 0:
-                UnitSequence unitResult = visService.getUnitSequenceById(requestNodeId);
-                return ResponseUtil.ok(unitResult);
-            case 1:
-                CharacterData characterResult = visService.getCharacterDataById(requestNodeId);
-                return ResponseUtil.ok(characterResult);
-            case 2:
-                EquipmentTree equipmentResult = visService.getEquipmentTreeById(requestNodeId);
-                return ResponseUtil.ok(equipmentResult);
-        }
-        return ResponseUtil.fail();
-    }
 
     
 

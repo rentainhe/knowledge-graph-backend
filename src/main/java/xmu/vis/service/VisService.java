@@ -98,6 +98,14 @@ public class VisService {
         // 存在返回true 不存在返回false
     }
 
+    //根据节点ID 返回该节点所有一阶关系
+    public List<RelationTuple> getAlloneStageRelationTuple(String nodeId){
+        List<RelationTuple> oneStageRelationTuple = getRelationByChildId(nodeId);
+        oneStageRelationTuple.addAll(getRelationByFatherId(nodeId));
+        return oneStageRelationTuple;
+    }
+    //查询
+
     //mapper层到service层的复现
     //unitSequenceMapper
     public List<UnitSequence> getAllUnitSequence(){

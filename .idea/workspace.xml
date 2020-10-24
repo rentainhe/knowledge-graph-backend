@@ -30,56 +30,11 @@
     <list default="true" id="5be4674e-41dd-46f0-9b89-fa4c199167d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/controller/VisController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/controller/VisController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/KnowledgeGraphVis-mysql-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/KnowledgeGraphVis-mysql-1.0-SNAPSHOT.jar.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/AttributeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/CharacterDataMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/EquipmentAllocationMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/EquipmentTreeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/EquipmentTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/NodeInfoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/PersonnelInformationMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/xmu/vis/service/VisService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/xmu/vis/service/VisService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/RelationCheckMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/RelationTupleMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/RelationTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu.vis.mapper/UnitSequenceMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/VisApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/controller/VO/ResultList.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/controller/VisController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/CharacterData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/EquipmentAllocation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/EquipmentTree.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/EquipmentType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/NodeInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/PersonnelInformation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/RelationCheck.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/RelationTuple.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/RelationType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/domain/UnitSequence.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/AttributeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/CharacterDataMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/EquipmentAllocationMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/EquipmentTreeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/EquipmentTypeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/NodeInfoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/PersonnelInformationMapper.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/RelationCheckMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/RelationTupleMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/RelationTypeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/mapper/UnitSequenceMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/service/ModelService.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/service/VisService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/utils/ParseUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/utils/ResponseUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/utils/testUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/vo/ResNode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/vo/ResNodeType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/xmu/vis/vo/ResRelation.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -539,6 +494,14 @@
           <properties class="org.apache.ibatis.exceptions.TooManyResultsException" package="org.apache.ibatis.exceptions" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$USER_HOME$/AppData/Local/Temp/tmp_2_RelationCheckMapper.class</url>
+          <line>21</line>
+          <properties class="xmu.vis.mapper.RelationCheckMapper" method="getUncheckedRelationById">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
