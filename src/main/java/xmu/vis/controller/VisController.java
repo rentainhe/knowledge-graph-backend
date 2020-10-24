@@ -64,7 +64,12 @@ public class VisController {
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
     /*
-      根据id更新待审核节点
+        更新待审核关系
+     */
+
+
+    /*
+        根据id更新待审核节点
      */
     @PostMapping("/updataUncheckedRelationById")
     public Object updataUncheckedRelationById(@RequestBody List<RelationCheck> relationChecks){
@@ -80,7 +85,7 @@ public class VisController {
     }
 
     /*
-      根据id获取待审核关系
+        根据id获取待审核关系
      */
     @GetMapping("/getUncheckedRelationById/{unCheckedId}")
     public Object getUncheckedRelationById(@PathVariable String unCheckedId){
@@ -89,7 +94,7 @@ public class VisController {
     }
 
     /*
-      删除待审核节点
+        删除待审核节点
      */
     @PostMapping("/deleteUncheckedRelation")
     public Object deleteUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
@@ -105,7 +110,7 @@ public class VisController {
     }
 
     /*
-      将Excel中上传的所有的关系插入待审核关系表
+        将Excel中上传的所有的关系插入待审核关系表
      */
     @PostMapping("/insertUncheckedRelation")
     public Object insertUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
@@ -121,7 +126,7 @@ public class VisController {
     }
 
     /*
-    获取所有待审核的关系
+        获取所有待审核的关系
      */
     @GetMapping("/getAllUncheckedRelation")
     public Object getAllUncheckedRelation(){

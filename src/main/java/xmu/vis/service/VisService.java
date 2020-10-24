@@ -62,6 +62,12 @@ public class VisService {
     @Autowired
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
+//    // 将待审核的关系添加至数据库中
+//    public Integer updataDatabaseByUncheckedRelation(RelationCheck relationCheck){
+//
+//    }
+
+
     // 更新待审核关系
     public Integer updataUncheckedRelationById(RelationCheck relationCheck){
         return relationCheckMapper.updataUncheckedRelationById(relationCheck);
