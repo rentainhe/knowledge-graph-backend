@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="xmu.vis.mapper.RelationTypeMapper">
-
-    <select id="getRelationNameByRelationId" parameterType="String" resultType="String">
-        select 关系名 as relationTypeName from 关系类型信息 where 关系ID=#{relationId}
-    </select>
-
-</mapper>
