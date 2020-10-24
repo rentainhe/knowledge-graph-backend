@@ -17,8 +17,7 @@ import java.util.Set;
 @Component
 public interface RelationTupleMapper {
     public List<RelationTuple> getAllRelation();//获取所有关系
-    public Set<String> queryAllRelationType();//获取关系类型集合
-
+    public Set<String> getAllRelationTypeSet();//获取关系类型集合
     public List<RelationTuple> getRelationByChildId(String child_Id);//根据 子节点ID 获得关系
     public List<RelationTuple> getRelationByChildName(String child_Name);//根据 子节点名称 获得关系
 

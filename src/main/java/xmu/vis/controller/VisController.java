@@ -111,7 +111,7 @@ public class VisController {
     // 查询所有节点信息
     @GetMapping("/queryAllNode")
     public Object queryAllNode(){
-        List<NodeInfo> allnode = nodeInfoMapper.getAllNodeInfo();
+        List<NodeInfo> allnode = visService.getAllNodeInfo();
         if( allnode.size()==0 ){
             return ResponseUtil.fail();
         }
@@ -120,7 +120,7 @@ public class VisController {
     // 查询所有关系三元组
     @GetMapping("/queryAllRelation")
     public Object queryAllRelation(){
-        List<RelationTuple> allrelation = relationTupleMapper.getAllRelation();
+        List<RelationTuple> allrelation = visService.getAllRelationTuple();
 
         if( allrelation.size() == 0){
             return ResponseUtil.fail();
@@ -130,7 +130,7 @@ public class VisController {
     // 返回数据库中所有可能出现的关系
     @GetMapping("/queryAllRelationType")
     public Object queryAllRelationType(){
-        return ResponseUtil.ok(relationTupleMapper.queryAllRelationType());
+        return ResponseUtil.ok(visService.getAllRelationTypeSet());
     }
 
 
@@ -147,7 +147,7 @@ public class VisController {
         }
 
         //添加关系
-        if(relationTupleMapper.addNewRelation(newRelationTuple)==1){
+        if(visService.addNewRelation(newRelationTuple)==1){
             return ResponseUtil.ok();
         }
         else{
@@ -161,7 +161,7 @@ public class VisController {
         if (!(visService.checkRelationExist(targetRelationTuple))){
             return ResponseUtil.fail(-1,"This relaiton doesn't exist!");
         }
-        else if(relationTupleMapper.deleteExistRelation(targetRelationTuple) == 1){
+        else if(visService.deleteExistRelation(targetRelationTuple) == 1){
             return ResponseUtil.ok();
         }
         return ResponseUtil.fail();
@@ -175,7 +175,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This relaiton doesn't exist!");
         }
 
-        if(relationTupleMapper.updateRelation(oldRelationTuple, newRelationName) == 1){
+        if(visService.updateRelation(oldRelationTuple, newRelationName) == 1){
             return ResponseUtil.ok();
         }
         return ResponseUtil.fail();
@@ -184,16 +184,15 @@ public class VisController {
     @GetMapping("queryRelationTupleByTwoName/{node1Name}/{node2Name}")
     public Object queryRelationTupleByTwoName(@PathVariable String node1Name,
                                               @PathVariable String node2Name){
-        List<RelationTuple> result = relationTupleMapper.getRelationByFatherNameandChildName(node1Name, node2Name);
-        result.addAll(relationTupleMapper.getRelationByFatherNameandChildName(node2Name, node1Name));
+        List<RelationTuple> result = visService.getRelationByFatherNameandChildName(node1Name, node2Name);
+        result.addAll(visService.getRelationByFatherNameandChildName(node2Name, node1Name));
         return ResponseUtil.ok(result);
     }
     //根据id返回对应节点的一阶关系
     @GetMapping("/getNodeonestageRelationInfoById/{requestNodeId}")
     public Object getNodeonestageRelationInfoById(@PathVariable String requestNodeId){
-//        NodeInfo backNode= nodeInfoMapper.getANodeInfoById(requestNodeId);
-        List<RelationTuple> result = relationTupleMapper.getRelationByChildId(requestNodeId);
-        result.addAll(relationTupleMapper.getRelationByFatherId(requestNodeId));
+        List<RelationTuple> result = visService.getRelationByChildId(requestNodeId);
+        result.addAll(visService.getRelationByFatherId(requestNodeId));
         return ResponseUtil.ok(result);
     }
 
@@ -206,7 +205,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Unit Node has already existed!");
         }
         else {
-            if(unitSequenceMapper.insertUnitSequence(unitSequence)==1){
+            if(visService.insertUnitSequence(unitSequence)==1){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -220,7 +219,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Person Node has already existed!");
         }
         else {
-            if(characterDataMapper.insertCharacterData(characterData)==1){
+            if(visService.insertCharacterData(characterData)==1){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -234,7 +233,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Equipment Node has already existed!");
         }
         else {
-            if(equipmentTreeMapper.insertEquipmentTree(equipmentTree)==1){
+            if(visService.insertEquipmentTree(equipmentTree)==1){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -249,7 +248,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Unit Node doesn't existed!");
         }
         else{
-            if(unitSequenceMapper.deleteUnitSequence(unitSequence.getUnitFullName())==1){
+            if(visService.deleteUnitSequence(unitSequence.getUnitFullName())==1){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -263,7 +262,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Person Node doesn't existed!");
         }
         else{
-            if(characterDataMapper.deleteCharacterData(characterData) == 1){
+            if(visService.deleteCharacterData(characterData) == 1){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -277,7 +276,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Equipment Node doesn't existed!");
         }
         else{
-            if(equipmentTreeMapper.deleteEquipmentTree(equipmentTree) == 1){
+            if(visService.deleteEquipmentTree(equipmentTree) == 1){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -287,7 +286,7 @@ public class VisController {
     //根据节点<名字>查询他的所有属性(存在同name不同node情况 ---> 返回多个对象)
     @GetMapping("/getNodeAttributeByName/{requestNodeName}")
     public Object getNodeAttributeByName(@PathVariable String requestNodeName){
-        List<NodeInfo> backNodeList= nodeInfoMapper.getANodeInfoByName(requestNodeName);
+        List<NodeInfo> backNodeList= visService.getANodeInfoByName(requestNodeName);
         if (backNodeList.size() == 0){
             return ResponseUtil.fail(-1,"No node match this name!");
         }
@@ -301,15 +300,15 @@ public class VisController {
             for (NodeInfo backNode : backNodeList) {
                 switch (backNode.getLabel()) {
                     case 0:
-                        List<UnitSequence> unitResult = unitSequenceMapper.getUnitSequenceByName(requestNodeName);
+                        List<UnitSequence> unitResult = visService.getUnitSequenceByName(requestNodeName);
                         resultlist.addUnitSequence(unitResult);
                         break;
                     case 1:
-                        List<CharacterData> charcterResult = characterDataMapper.getCharacterDataByName(requestNodeName);
+                        List<CharacterData> charcterResult = visService.getCharacterDataByName(requestNodeName);
                         resultlist.addCharacterData(charcterResult);
                         break;
                     case 2:
-                        List<EquipmentTree> equipmentResult = equipmentTreeMapper.getEquipmentByName(requestNodeName);
+                        List<EquipmentTree> equipmentResult = visService.getEquipmentTreeByName(requestNodeName);
                         resultlist.addEquipmentTree(equipmentResult);
                         break;
                 }
@@ -320,19 +319,19 @@ public class VisController {
     //根据<节点Id>查询一个节点的所有属性(节点为唯一标识-->只返回一个对象)
     @GetMapping("/getNodeAttributeById/{requestNodeId}")
     public Object getNodeAttributeById(@PathVariable String requestNodeId){
-        NodeInfo backNode = nodeInfoMapper.getANodeInfoById(requestNodeId);
+        NodeInfo backNode = visService.getANodeInfoById(requestNodeId);
         if (backNode == null){
             return ResponseUtil.fail(-1,"No node match this name!");
         }
         switch (backNode.getLabel()) {
             case 0:
-                UnitSequence unitResult = unitSequenceMapper.getUnitSequenceById(requestNodeId);
+                UnitSequence unitResult = visService.getUnitSequenceById(requestNodeId);
                 return ResponseUtil.ok(unitResult);
             case 1:
-                CharacterData characterResult = characterDataMapper.getCharacterDataById(requestNodeId);
+                CharacterData characterResult = visService.getCharacterDataById(requestNodeId);
                 return ResponseUtil.ok(characterResult);
             case 2:
-                EquipmentTree equipmentResult = equipmentTreeMapper.getEquipmentById(requestNodeId);
+                EquipmentTree equipmentResult = visService.getEquipmentTreeById(requestNodeId);
                 return ResponseUtil.ok(equipmentResult);
         }
         return ResponseUtil.fail();
@@ -348,13 +347,13 @@ public class VisController {
     @PostMapping("/changeNodeSomeAttributeById/{requestId}")
     public Object changeNodeSomeAttributeById(@PathVariable String requestId,
                                               @RequestBody Map<String,String> AttributeObject){
-        NodeInfo requestNodeInfo = nodeInfoMapper.getANodeInfoById(requestId);
+        NodeInfo requestNodeInfo = visService.getANodeInfoById(requestId);
         if (requestNodeInfo == null){
             return ResponseUtil.fail(-1,"No node match this ID!");
         }
         else{//*目前只是简单修改功能的实现,没有考虑“单位序列”“装备类别””装备配赋“三个表中数据的联动---->虽然能跑通 但还没写完
             if(requestNodeInfo.getLabel() == 0){//更改Unit属性
-                if(unitSequenceMapper.modifyAttributeValue(requestId, AttributeObject)==1){
+                if(visService.modifyUnitSequenceAttributeValue(requestId, AttributeObject)==1){
                     return ResponseUtil.ok();
                 }
                 else{
@@ -362,7 +361,7 @@ public class VisController {
                 }
             }
             else if(requestNodeInfo.getLabel() == 1){//更改Person属性
-                if (characterDataMapper.modifyAttributeValue(requestId, AttributeObject)==1){
+                if (visService.modifyCharacterDataAttributeValue(requestId, AttributeObject)==1){
                     return ResponseUtil.ok();
                 }
                 else {
@@ -370,7 +369,7 @@ public class VisController {
                 }
             }
             else if(requestNodeInfo.getLabel() == 2){//更改EquipmentTree属性
-                if (equipmentTreeMapper.modifyAttributeValue(requestId, AttributeObject) == 1){
+                if (visService.modifyEquipmentTreeAttributeValue(requestId, AttributeObject) == 1){
                     return ResponseUtil.ok();
                 }
                 else {
