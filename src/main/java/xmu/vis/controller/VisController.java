@@ -64,6 +64,31 @@ public class VisController {
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
     /*
+      根据id更新待审核节点
+     */
+    @PostMapping("/updataUncheckedRelationById")
+    public Object updataUncheckedRelationById(@RequestBody List<RelationCheck> relationChecks){
+        if(relationChecks.size()==0){
+            return ResponseUtil.fail(-1,"the updata List can't be null");
+        }
+        else{
+            for(int i=0; i<relationChecks.size(); i++){
+                visService.updataUncheckedRelationById(relationChecks.get(i));
+            }
+            return ResponseUtil.ok();
+        }
+    }
+
+    /*
+      根据id获取待审核关系
+     */
+    @GetMapping("/getUncheckedRelationById/{unCheckedId}")
+    public Object getUncheckedRelationById(@PathVariable String unCheckedId){
+        RelationCheck relationCheck = visService.getUncheckedRelationById(unCheckedId);
+        return ResponseUtil.ok(relationCheck);
+    }
+
+    /*
       删除待审核节点
      */
     @PostMapping("/deleteUncheckedRelation")

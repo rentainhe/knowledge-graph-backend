@@ -20,9 +20,4 @@
         from 待审核关系 where 待审核ID=#{unCheckedId}
     </select>
 
-    <update id="updataUncheckedRelationById" parameterType="xmu.vis.domain.RelationCheck">
-        update 待审核关系 set 起始节点名称=#{startNodeName}, 起始节点类型=#{startNodeType}, 终止节点名称=#{endNodeName}, 终止节点类型=#{endNodeType}, 节点间类型=#{relation}
-        where 待审核ID=#{unCheckedId}
-    </update>
-
 </mapper>
