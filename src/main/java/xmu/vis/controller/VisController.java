@@ -318,8 +318,11 @@ public class VisController {
 
 
     //增加 Unit 节点
-    @PostMapping("addUnitSequnceNode")
+    @PostMapping("addUnitSequenceNode")
     public Object addUnitSequenceNode(@RequestBody UnitSequence unitSequence){
+        if (unitSequence.getUnitId() == null){
+            return ResponseUtil.fail(-1,"New Unit Sequence must has unitId!");
+        }
         //检查节点是否存在
         if (visService.checkNodeInfoExist(unitSequence.getUnitId())){
             return ResponseUtil.fail(-1,"This Unit Node has already existed!");
@@ -334,6 +337,9 @@ public class VisController {
     //增加 CharacterData 节点
     @PostMapping("addCharacterDataNode")
     public Object addCharacterDataNode(@RequestBody CharacterData characterData){
+        if (characterData.getPersonId() == null){
+            return ResponseUtil.fail(-1, "New CharacterData must has personId!");
+        }
         //检查节点是否存在
         if (visService.checkNodeInfoExist(characterData.getPersonId())){
             return ResponseUtil.fail(-1,"This Person Node has already existed!");
@@ -348,6 +354,9 @@ public class VisController {
     //增加 EquipmentTree 节点
     @PostMapping("addEquipmentTreeNode")
     public Object addEquipmentTreeNode(@RequestBody EquipmentTree equipmentTree){
+        if (equipmentTree.getEquipmentId() == null){
+            return ResponseUtil.fail(-1, "New EquipmentTree must has equipmentTreeId!");
+        }
         //检查节点是否存在
         if (visService.checkNodeInfoExist(equipmentTree.getEquipmentId())){
             return ResponseUtil.fail(-1,"This Equipment Node has already existed!");

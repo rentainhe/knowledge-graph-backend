@@ -26,7 +26,7 @@
     </select>
 
     <insert id="insertUnitSequence" parameterType="String">
-        insert into 单位序列(单位ID, PID, 单位全称, 单位名称, 属性, 性质, 军种, 兵种, 类别ID, 类别, 指挥关系, 战区, 营区ID, 营区, 任务, 具体任务, 编制, 平时驻地, 平时驻地经度, 平时驻地纬度, 战时驻地, 战时驻地经度, 战时驻地维度, 成立日期, 裁撤日期, 基本情况, 详细情况, 备注1, 备注2)
+        insert into 单位序列(单位ID, PID, 单位全称, 单位名称, 属性, 性质, 军种, 兵种, 类别ID, 类别, 指挥关系, 战区, 营区ID, 营区, 任务, 具体任务, 编制, 平时驻地, 平时驻地经度, 平时驻地纬度, 战时驻地, 战时驻地经度, 战时驻地纬度, 成立日期, 裁撤日期, 基本情况, 详细情况, 备注1, 备注2)
         values (#{unitId}, #{pid}, #{unitFullName}, #{unitName}, #{attribute}, #{nature}, #{services}, #{arms}, #{categoryId}, #{category}, #{commandRelationship}, #{warZone}, #{campId}, #{camp}, #{task}, #{concreteTasks}, #{establishment}, #{peacetimeGarrison}, #{peacetimeGarrisonLongitude}, #{peacetimeGarrisonLatitude}, #{wartimeGarrison}, #{wartimeGarrisonLongitude}, #{wartimeGarrisonLatitude}, #{establishmentDate}, #{abolitionDate}, #{baseInfo}, #{detailedInfo}, #{remarks1}, #{remarks2})
 
     </insert>
