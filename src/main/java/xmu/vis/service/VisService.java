@@ -194,6 +194,212 @@ public class VisService {
         return resultRelationTuple;
     }
 
+
+    //增加一个Unit节点
+    public Boolean addAUnitSequenceNode(UnitSequence unitSequence){
+        //检查节点是否存在(存在返回false)
+        if (checkNodeInfoExist(unitSequence.getUnitId())){
+            return false;
+        }
+        else{
+            if(insertUnitSequence(unitSequence)!=1){
+                return false;//插入到<单位序列>表中
+            }
+            NodeInfo nodeInfo = new NodeInfo();
+            nodeInfo.setNodeId(unitSequence.getUnitId());
+            nodeInfo.setLabel(0);
+            nodeInfo.setNodeName(unitSequence.getUnitName());
+            if(insertANodeInfo(nodeInfo) != 1){
+                return false;//插入到<节点信息>表中
+            }
+            if(unitSequence.getPid() == null){
+                return true;
+            }
+            else{//新添加的节点拥有PID
+                if(checkNodeInfoExist(unitSequence.getPid())!=null){//新增的节点PID的对应单位节点存在,加入到关系三元组中
+                    RelationTuple relationTuple = new RelationTuple();
+                    relationTuple.setFatherId(unitSequence.getPid());
+                    relationTuple.setFatherName(getANodeInfoById(unitSequence.getPid()).getNodeName());
+                    relationTuple.setChildId(unitSequence.getUnitId());
+                    relationTuple.setChildName(unitSequence.getUnitName());
+                    relationTuple.setRelationName("下级单位(单位->单位)");
+                    if(addNewRelation(relationTuple) != 1){
+                        return false;//根据新增节点的PID插入到<关系三元组>表中
+                    }
+                    relationTuple.setFatherId(unitSequence.getUnitId());
+                    relationTuple.setFatherName(unitSequence.getUnitName());
+                    relationTuple.setChildId(unitSequence.getPid());
+                    relationTuple.setChildName(getANodeInfoById(unitSequence.getPid()).getNodeName());
+                    relationTuple.setRelationName("上级单位(单位->单位)");
+                    return addNewRelation(relationTuple) != 1;//根据新增节点的PID插入到<关系三元组>表中
+                }
+            }
+        }
+        return false;
+    }
+    //增加一个CharacterData节点
+    public Boolean addACharacterDataNode(CharacterData characterData){
+        //检查节点是否存在
+        if (checkNodeInfoExist(characterData.getPersonId())){
+            return false;
+        }
+        else {
+            if(insertCharacterData(characterData)!=1){
+                return false;//插入<人物资料>表中
+            }
+            NodeInfo nodeInfo = new NodeInfo();
+            nodeInfo.setNodeId(characterData.getPersonId());
+            nodeInfo.setLabel(1);
+            nodeInfo.setNodeName(characterData.getPersonName());
+            //插入到<节点信息>表中
+            return insertANodeInfo(nodeInfo) == 1;
+        }
+    }
+    //增加一个EquipmentTree节点
+    public Boolean addAEquipmentTreeNode(EquipmentTree equipmentTree){
+        //检查节点是否存在
+        if(checkNodeInfoExist(equipmentTree.getEquipmentId())){
+            return false;
+        }
+        //(新添加的装备树必须属于<装备类型>表中的某一类装备)
+        if((getEquipmentTypeById(equipmentTree.getEquipmentTypeId()) != null) &&
+                (getEquipmentTypeById(equipmentTree.getEquipmentTypeId()) == getEquipmentTypeByName(equipmentTree.getEquipmentType()))){
+            if(insertEquipmentTree(equipmentTree)!=1){
+                return false;//插入<装备树>表中
+            }
+            NodeInfo nodeInfo = new NodeInfo();
+            nodeInfo.setNodeId(equipmentTree.getEquipmentId());
+            nodeInfo.setLabel(1);
+            nodeInfo.setNodeName(equipmentTree.getEquipmentName());
+            //插入到<节点信息>表中
+            return insertANodeInfo(nodeInfo)==1;
+        }
+        return false;
+    }
+
+    //删除一个Unit节点
+    public Boolean deleteAUnitSequenceNode(UnitSequence unitSequence){
+        //检查节点是否存在(不存在返回false)
+        if (!(checkNodeInfoExist(unitSequence.getUnitId()))){
+            return false;
+        }
+        else {
+            if (deleteUnitSequence(unitSequence.getUnitFullName()) != 1) {
+                return false;//删除<单位序列>表中数据
+            }
+            NodeInfo nodeInfo = new NodeInfo();
+            nodeInfo.setNodeId(unitSequence.getUnitId());
+            nodeInfo.setLabel(0);
+            nodeInfo.setNodeName(unitSequence.getUnitName());
+            if (deleteANodeInfo(nodeInfo) != 1) {
+                return false;//删除<节点信息>表中数据
+            }
+            //删除一个Unit节点(删除节点-->单位序列/节点信息中 相应内容删除 && 人事/装备配赋/关系三元组中 相应关系删除 && 单位序列中PID为这个单位的 置null)
+            List<RelationTuple> relationTuples = getRelationByChildId(unitSequence.getUnitId());//删除<关系三元组>中与这个节点有关的关系
+            for (RelationTuple relationTuple : relationTuples) {
+                deleteExistRelation(relationTuple);
+                if (getANodeInfoById(relationTuple.getFatherId()).getLabel() == 0 && getUnitSequenceById(relationTuple.getFatherId()).getPid().equals(unitSequence.getUnitId())) {
+                    getUnitSequenceById(relationTuple.getFatherId()).setPid(null);//PID置null
+                }
+            }
+            relationTuples = getRelationByFatherId(unitSequence.getUnitId());
+            for (RelationTuple relationTuple : relationTuples) {
+                deleteExistRelation(relationTuple);
+                if (getANodeInfoById(relationTuple.getFatherId()).getLabel() == 0 && getUnitSequenceById(relationTuple.getFatherId()).getPid().equals(unitSequence.getUnitId())) {
+                    getUnitSequenceById(relationTuple.getFatherId()).setPid(null);//PID置null
+                }
+            }
+            return true;
+        }
+    }
+    //删除一个CharacterData节点
+    public Boolean deleteACharacterDataNode(CharacterData characterData){
+        //检查节点是否存在(不存在返回false)
+        if (!(checkNodeInfoExist(characterData.getPersonId()))){
+            return false;
+        }
+        else{
+            if(deleteCharacterData(characterData) != 1){
+                return false;//删除<人物资料>表中数据
+            }
+            NodeInfo nodeInfo = new NodeInfo();
+            nodeInfo.setNodeId(characterData.getPersonId());
+            nodeInfo.setLabel(1);
+            nodeInfo.setNodeName(characterData.getPersonName());
+            if(deleteANodeInfo(nodeInfo) !=1 ){
+                return false;//删除<节点信息>表中数据
+            }
+            //删除一个Character节点有关的关系三元组
+            List<RelationTuple> relationTuples = getRelationByChildId(characterData.getPersonId());
+            relationTuples.addAll(getRelationByFatherId(characterData.getPersonId()));
+            for (RelationTuple relationTuple:relationTuples){
+                deleteExistRelation(relationTuple);//删除<关系三元组>表中数据
+                //如果是<单位->人员>的隶属关系 则需要在<人事信息>表中删掉
+                if (relationTuple.getRelationName().equals("成员(单位->人)") || relationTuple.getRelationName().equals("隶属单位(人->单位)")){
+                    String unitId = "";
+                    String personId = "";
+                    if(relationTuple.getFatherId().equals(characterData.getPersonId())){
+                        unitId = relationTuple.getChildId();
+                        personId = relationTuple.getFatherId();
+                    }
+                    else{
+                        unitId = relationTuple.getFatherId();
+                        personId = relationTuple.getChildId();
+                    }
+                    if(personnelInformationMapper.deletePersonnelInformationByUnitIdPersonId(unitId, personId)!=1){//如果是<单位->人员>的隶属关系 则需要在<人事信息>表中删掉
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+    }
+    //删除一个EquipmentTree节点
+    public Boolean deleteAEquipmentTreeNode(EquipmentTree equipmentTree){
+        //检查节点是否存在(不存在返回false)
+        if (!(checkNodeInfoExist(equipmentTree.getEquipmentId()))){
+            return false;
+        }
+        else
+        {
+            if (deleteEquipmentTree(equipmentTree)!=1){
+                return false;//删除<装备树>表中数据
+            }
+            NodeInfo nodeInfo = new NodeInfo();
+            nodeInfo.setNodeId(equipmentTree.getEquipmentId());
+            nodeInfo.setLabel(2);
+            nodeInfo.setNodeName(equipmentTree.getEquipmentName());
+            if(deleteANodeInfo(nodeInfo) !=1 ){
+                return false;//删除<节点信息>表中数据
+            }
+            List<RelationTuple> relationTuples = getRelationByChildId(equipmentTree.getEquipmentId());
+            relationTuples.addAll(getRelationByFatherId(equipmentTree.getEquipmentId()));
+            for (RelationTuple relationTuple:relationTuples) {
+                deleteExistRelation(relationTuple);//删除<关系三元组>表中数据
+                //如果是<单位->武器>的隶属关系 则需要在<装备配赋>表中删掉
+                if(relationTuple.getRelationName().equals("装备有(单位->装备)") || relationTuple.getRelationName().equals("分配给(装备->单位)")){
+                    String unitId = "";
+                    String equipmentTreeId = "";
+                    if(relationTuple.getFatherId().equals(equipmentTree.getEquipmentId())){
+                        unitId = relationTuple.getChildId();
+                        equipmentTreeId = relationTuple.getFatherId();
+                    }
+                    else{
+                        unitId = relationTuple.getFatherId();
+                        equipmentTreeId = relationTuple.getChildId();
+                    }
+                    if(equipmentAllocationMapper.deleteEquipmentAllocationByUnitIdEquipmentId(unitId, equipmentTreeId) != 1){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+
+
+
     //mapper层到service层的复现
     //unitSequenceMapper
     public List<UnitSequence> getAllUnitSequence(){
@@ -303,7 +509,20 @@ public class VisService {
     public List<NodeInfo> getANodeInfoByName(String theNodeName){
         return nodeInfoMapper.getANodeInfoByName(theNodeName);
     }
+    public Integer deleteANodeInfo(NodeInfo nodeInfo){
+        return nodeInfoMapper.deleteANodeInfo(nodeInfo);
+    }
+    public Integer insertANodeInfo(NodeInfo nodeInfo){
+        return nodeInfoMapper.insertANodeInfo(nodeInfo);
+    }
 
+    //equipmentTypeMapper
+    public EquipmentType getEquipmentTypeById(String euqipmentId){
+        return equipmentTypeMapper.getEquipmentTypeById(euqipmentId);
+    }
+    public EquipmentType getEquipmentTypeByName(String equipmentName){
+        return equipmentTypeMapper.getEquipmentTypeByName(equipmentName);
+    }
 /*
     public static HashMap<String, Object> nameToLabel = new HashMap<String, Object>() {
         {

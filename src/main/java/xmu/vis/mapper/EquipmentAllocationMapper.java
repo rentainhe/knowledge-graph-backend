@@ -24,5 +24,6 @@ public interface EquipmentAllocationMapper {
 
     public List<EquipmentAllocation> getEquipmentAllocationByEquipmentId(String equipmentId);//一个武器ID对应一个武器 但这个武器可能不止装备给一个单位
 
+    public Integer deleteEquipmentAllocationByUnitIdEquipmentId(String unitId, String equipmentId);
     public Integer modifyAttributeValue(String requestId, Map<String, String> map);
 }

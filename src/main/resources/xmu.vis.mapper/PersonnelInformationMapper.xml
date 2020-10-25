@@ -25,4 +25,8 @@
         where 人员姓名 = #{personName}
     </select>
 
+    <delete id="deletePersonnelInformationByUnitIdPersonId" parameterType="String">
+        delete from 人事信息
+        where 单位ID=#{unitId} and 人员ID=#{personId}
+    </delete>
 </mapper>

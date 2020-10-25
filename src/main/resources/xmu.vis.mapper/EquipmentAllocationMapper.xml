@@ -38,6 +38,11 @@
         where 装备名称 = #{equipmentName}
     </select>
 
+    <delete id="deleteEquipmentAllocationByUnitIdEquipmentId" parameterType="String">
+        delete from 装备配赋
+        where 单位ID=#{unitId} and 装备ID=#{equipmentId}
+    </delete>
+
     <update id="modifyAttributeValue">
         update 装备配赋
         <set>

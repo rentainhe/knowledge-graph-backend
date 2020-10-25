@@ -318,14 +318,14 @@ public class VisController {
 
 
     //增加 Unit 节点
-    @PostMapping("addUnitNode")
-    public Object addUnitNode(@RequestBody UnitSequence unitSequence){
+    @PostMapping("addUnitSequnceNode")
+    public Object addUnitSequenceNode(@RequestBody UnitSequence unitSequence){
         //检查节点是否存在
         if (visService.checkNodeInfoExist(unitSequence.getUnitId())){
             return ResponseUtil.fail(-1,"This Unit Node has already existed!");
         }
         else {
-            if(visService.insertUnitSequence(unitSequence)==1){
+            if(visService.addAUnitSequenceNode(unitSequence)){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -339,7 +339,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Person Node has already existed!");
         }
         else {
-            if(visService.insertCharacterData(characterData)==1){
+            if(visService.addACharacterDataNode(characterData)){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -353,7 +353,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Equipment Node has already existed!");
         }
         else {
-            if(visService.insertEquipmentTree(equipmentTree)==1){
+            if(visService.addAEquipmentTreeNode(equipmentTree)){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -361,14 +361,14 @@ public class VisController {
     }
 
     //删除 Unit 节点
-    @PostMapping("deleteUnitNode")
-    public Object deleteUnitNode(@RequestBody UnitSequence unitSequence){
+    @PostMapping("deleteUnitSequenceNode")
+    public Object deleteUnitSequenceNode(@RequestBody UnitSequence unitSequence){
         //检查节点是否存在
         if (!(visService.checkNodeInfoExist(unitSequence.getUnitId()))){
             return ResponseUtil.fail(-1,"This Unit Node doesn't existed!");
         }
         else{
-            if(visService.deleteUnitSequence(unitSequence.getUnitFullName())==1){
+            if(visService.deleteAUnitSequenceNode(unitSequence)){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -382,7 +382,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Person Node doesn't existed!");
         }
         else{
-            if(visService.deleteCharacterData(characterData) == 1){
+            if(visService.deleteACharacterDataNode(characterData)){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();
@@ -396,7 +396,7 @@ public class VisController {
             return ResponseUtil.fail(-1,"This Equipment Node doesn't existed!");
         }
         else{
-            if(visService.deleteEquipmentTree(equipmentTree) == 1){
+            if(visService.deleteAEquipmentTreeNode(equipmentTree)){
                 return ResponseUtil.ok();
             }
             return ResponseUtil.fail();

@@ -20,6 +20,6 @@ public interface PersonnelInformationMapper {
 
     public PersonnelInformation getPersonnelInformationByPersonName(String personName);
 
-
+    public Integer deletePersonnelInformationByUnitIdPersonId(String unitId, String personId);
 
 }

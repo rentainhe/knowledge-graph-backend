@@ -13,4 +13,13 @@
     <select id="getANodeInfoByName" resultType="xmu.vis.domain.NodeInfo" parameterType="String">
         select 节点ID as nodeId,节点类型 as label, 节点名称 as nodeName from 节点信息 where 节点名称=#{theNodeName}
     </select>
+
+    <delete id="deleteANodeInfo" parameterType="xmu.vis.domain.NodeInfo">
+        delete from 节点信息
+        where 节点ID=#{nodeId} and 节点名称=#{nodeName}
+    </delete>
+
+    <insert id="insertANodeInfo" parameterType="xmu.vis.domain.NodeInfo">
+        insert into 节点信息 (节点ID,节点类型,节点名称) values (#{nodeId}, #{label}, #{nodeName})
+    </insert>
 </mapper>

@@ -15,4 +15,8 @@ public interface NodeInfoMapper {
 
     public NodeInfo getANodeInfoById(String theNodeId);
     public List<NodeInfo> getANodeInfoByName(String theNodeName);
+
+    public Integer deleteANodeInfo(NodeInfo nodeInfo);
+
+    public Integer insertANodeInfo(NodeInfo nodeInfo);
 }
