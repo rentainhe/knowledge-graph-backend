@@ -231,6 +231,7 @@ public class VisController {
         }
         return ResponseUtil.fail();
     }
+
     //给定两个节点的<名字>  返回两者之间所有的关系   (*注意这个接口 如果节点重名它会返回所有符合名字要求的关系)
     @GetMapping("queryRelationTupleByTwoName/{node1Name}/{node2Name}")
     public Object queryRelationTupleByTwoName(@PathVariable String node1Name,
@@ -239,11 +240,25 @@ public class VisController {
         result.addAll(visService.getRelationByFatherNameandChildName(node2Name, node1Name));
         return ResponseUtil.ok(result);
     }
+    //给定父节点<名字> 子节点<名字> 返回关系
+    @GetMapping("queryRelationTupleByFatherNameChildName/{fatherName}/{childName}")
+    public Object queryRelationTupleByFatherNameChildName(@PathVariable String fatherName,
+                                                          @PathVariable String childName){
+        List<RelationTuple> result = visService.getRelationByFatherNameandChildName(fatherName, childName);
+        return ResponseUtil.ok(result);
+    }
+
     //根据id返回对应节点的一阶关系
-    @GetMapping("/getNodeonestageRelationInfoById/{requestNodeId}")
-    public Object getNodeonestageRelationInfoById(@PathVariable String requestNodeId){
-        List<RelationTuple> result = visService.getRelationByChildId(requestNodeId);
-        result.addAll(visService.getRelationByFatherId(requestNodeId));
+    @GetMapping("/getOneStageNodeRelationTupleById/{requestNodeId}")
+    public Object getOneStageNodeRelationTupleById(@PathVariable String requestNodeId){
+        List<RelationTuple> result = visService.getOneStageNodeRelationTuple(requestNodeId);
+        return ResponseUtil.ok(result);
+    }
+
+    //根据id返回对应节点的一二阶关系(不太行  二阶节点与一阶节点关系网没弄)
+    @GetMapping("/getTwoStageNodeRelationTupleById/{requestNodeId}")
+    public Object getTwoStageNodeRelationTupleById(@PathVariable String requestNodeId){
+        List<RelationTuple> result = visService.getTwoStageNodeRelationTuple(requestNodeId);
         return ResponseUtil.ok(result);
     }
 
@@ -387,12 +402,6 @@ public class VisController {
             return ResponseUtil.fail();
         }
     }
-
-
-
-    
-
-
 
 
 

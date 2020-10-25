@@ -136,14 +136,63 @@ public class VisService {
         return checkNodeInfo != null;
         // 存在返回true 不存在返回false
     }
-
     //根据节点ID 返回该节点所有一阶关系
     public List<RelationTuple> getAlloneStageRelationTuple(String nodeId){
         List<RelationTuple> oneStageRelationTuple = getRelationByChildId(nodeId);
         oneStageRelationTuple.addAll(getRelationByFatherId(nodeId));
         return oneStageRelationTuple;
     }
-    //查询
+    //根据节点ID返回: 1,该节点与"一阶子节点"之间的关系  2,该节点的“一阶子节点”们之间的关系
+    public List<RelationTuple> getOneStageNodeRelationTuple(String rootNodeId){
+        //1,该节点与"一阶子节点"之间的关系
+        List<RelationTuple> resultRelationTuple = getRelationByChildId(rootNodeId);
+        resultRelationTuple.addAll(getRelationByFatherId(rootNodeId));
+
+        //一阶子节点的ID列表
+        List<String> oneStageNodeId = new ArrayList<>();//一阶子节点ID列表
+        for (RelationTuple relationTuple: resultRelationTuple){
+            if(relationTuple.getFatherId().equals(rootNodeId)){
+                oneStageNodeId.add(relationTuple.getChildId());
+            }
+            else{
+                oneStageNodeId.add(relationTuple.getFatherId());
+            }
+        }
+        Set<RelationTuple> result = new HashSet<>();
+        for(String nodeId:oneStageNodeId){
+            List<RelationTuple> relations = getAlloneStageRelationTuple(nodeId);
+            result.addAll(relations);
+        }
+        result.removeIf(relationTuple -> !oneStageNodeId.contains(relationTuple.getFatherId()) || !oneStageNodeId.contains(relationTuple.getChildId()));
+        List<RelationTuple> a = new ArrayList<>(result);
+        resultRelationTuple.addAll(a);
+        return resultRelationTuple;
+    }
+    //根据节点ID返回: 该节点的二阶关系网
+    public List<RelationTuple> getTwoStageNodeRelationTuple(String rootNodeId){
+        //1,该节点与"一阶子节点"之间的关系
+        List<RelationTuple> resultRelationTuple = getRelationByChildId(rootNodeId);
+        resultRelationTuple.addAll(getRelationByFatherId(rootNodeId));
+
+        //一阶子节点的ID列表
+        List<String> oneStageNodeId = new ArrayList<>();//一阶子节点ID列表
+        for (RelationTuple relationTuple: resultRelationTuple){
+            if(relationTuple.getFatherId().equals(rootNodeId)){
+                oneStageNodeId.add(relationTuple.getChildId());
+            }
+            else{
+                oneStageNodeId.add(relationTuple.getFatherId());
+            }
+        }
+        Set<RelationTuple> result = new HashSet<>();
+        for(String nodeId:oneStageNodeId){
+            List<RelationTuple> relations = getAlloneStageRelationTuple(nodeId);
+            result.addAll(relations);
+        }
+        List<RelationTuple> a = new ArrayList<>(result);
+        resultRelationTuple.addAll(a);
+        return resultRelationTuple;
+    }
 
     //mapper层到service层的复现
     //unitSequenceMapper
