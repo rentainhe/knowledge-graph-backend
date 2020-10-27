@@ -30,7 +30,7 @@ import java.util.*;
 
 
 @RestController
-@CrossOrigin(origins="http://localhost:8010", maxAge = 3600, allowCredentials = "true")
+//@CrossOrigin(origins="*")
 public class VisController {
 
     @Autowired
