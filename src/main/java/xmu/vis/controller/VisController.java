@@ -30,7 +30,7 @@ import java.util.*;
 
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins="http://localhost:8010", maxAge = 3600, allowCredentials = "true")
 public class VisController {
 
     @Autowired
@@ -118,7 +118,7 @@ public class VisController {
     /*
         删除待审核节点
      */
-    @CrossOrigin(origins="http://localhost:8010", maxAge = 3600, allowCredentials = "true")
+//    @CrossOrigin(origins="http://localhost:8010", maxAge = 3600, allowCredentials = "true")
     @PostMapping("/deleteUncheckedRelation")
     public Object deleteUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
         if (relationChecks.isEmpty()) {
