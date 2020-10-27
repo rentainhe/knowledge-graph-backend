@@ -30,7 +30,7 @@ import java.util.*;
 
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:8010")
 public class VisController {
 
     @Autowired
