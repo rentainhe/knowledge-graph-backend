@@ -118,7 +118,7 @@ public class VisController {
     /*
         删除待审核节点
      */
-    @CrossOrigin(origins="http://10.24.82.10:8010", maxAge = 3600, allowCredentials = "true")
+    @CrossOrigin(origins="http://localhost:8010", maxAge = 3600, allowCredentials = "true")
     @PostMapping("/deleteUncheckedRelation")
     public Object deleteUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
         if (relationChecks.isEmpty()) {
@@ -135,7 +135,7 @@ public class VisController {
     /*
         将Excel中上传的所有的关系插入待审核关系表
      */
-    @CrossOrigin(origins="http://10.24.82.10:8010", maxAge = 3600, allowCredentials = "true")
+    @CrossOrigin(origins="http://localhost:8010", maxAge = 3600, allowCredentials = "true")
     @PostMapping("/insertUncheckedRelation")
     public Object insertUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
         if (relationChecks.isEmpty()) {
