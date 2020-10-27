@@ -30,7 +30,7 @@ import java.util.*;
 
 
 @RestController
-//@CrossOrigin(origins="*")
+@CrossOrigin(origins="*")
 public class VisController {
 
     @Autowired
