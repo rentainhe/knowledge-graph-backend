@@ -6,6 +6,7 @@ import net.sf.json.JSONObject;
 import org.apache.catalina.util.RequestUtil;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +26,8 @@ import javax.management.relation.Relation;
 import javax.validation.constraints.PastOrPresent;
 import javax.xml.soap.Node;
 import java.util.*;
+
+
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -63,10 +66,11 @@ public class VisController {
     @Autowired
     private EquipmentAllocationMapper equipmentAllocationMapper;
 
+
     /*
         更新待审核关系
      */
-    @CrossOrigin
+    @CrossOrigin(origins="http://10.24.82.10:8010", maxAge = 3600, allowCredentials = "true")
     @PostMapping("/updataDatabaseByUncheckedRelation")
     public Object updataDatabaseByUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
         if(relationChecks.size()==0){
@@ -87,7 +91,7 @@ public class VisController {
     /*
         根据id更新待审核节点
      */
-    @CrossOrigin
+    @CrossOrigin(origins="http://10.24.82.10:8010", maxAge = 3600, allowCredentials = "true")
     @PostMapping("/updataUncheckedRelationById")
     public Object updataUncheckedRelationById(@RequestBody List<RelationCheck> relationChecks){
         if(relationChecks.size()==0){
@@ -104,7 +108,7 @@ public class VisController {
     /*
         根据id获取待审核关系
      */
-    @CrossOrigin
+    @CrossOrigin(origins="http://10.24.82.10:8010", maxAge = 3600, allowCredentials = "true")
     @GetMapping("/getUncheckedRelationById/{unCheckedId}")
     public Object getUncheckedRelationById(@PathVariable String unCheckedId){
         RelationCheck relationCheck = visService.getUncheckedRelationById(unCheckedId);
@@ -114,7 +118,7 @@ public class VisController {
     /*
         删除待审核节点
      */
-    @CrossOrigin
+    @CrossOrigin(origins="http://10.24.82.10:8010", maxAge = 3600, allowCredentials = "true")
     @PostMapping("/deleteUncheckedRelation")
     public Object deleteUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
         if (relationChecks.isEmpty()) {
@@ -131,7 +135,7 @@ public class VisController {
     /*
         将Excel中上传的所有的关系插入待审核关系表
      */
-    @CrossOrigin
+    @CrossOrigin(origins="http://10.24.82.10:8010", maxAge = 3600, allowCredentials = "true")
     @PostMapping("/insertUncheckedRelation")
     public Object insertUncheckedRelation(@RequestBody List<RelationCheck> relationChecks){
         if (relationChecks.isEmpty()) {
