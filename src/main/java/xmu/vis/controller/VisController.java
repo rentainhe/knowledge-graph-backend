@@ -455,7 +455,11 @@ public class VisController {
         return ResponseUtil.fail();
     }
 
-
+    //查询表头
+    @GetMapping("/showRelationTupleColumn")
+    public Object showRelationTupleColumn(){
+        return ResponseUtil.ok(relationTupleMapper.showAllColumn());
+    }
 
 
 
