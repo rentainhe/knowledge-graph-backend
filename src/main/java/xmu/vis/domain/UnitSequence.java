@@ -9,62 +9,62 @@ import java.sql.Timestamp;
 // ------------  单位序列  ---------------
 public class UnitSequence implements Serializable {
 
-    private String unitId;
+    private String unitId; //单位ID
 
-    private String pid;
+    private String pid;  //PID
 
-    private String unitFullName;
+    private String unitFullName;   //单位全称
 
-    private String unitName;
+    private String unitName;   //单位名称
 
-    private String attribute;
+    private String attribute;   //属性
 
-    private String nature;
+    private String nature;   //性质
 
-    private String services;
+    private String services;   //军种
 
-    private String arms;
+    private String arms;    //兵种
 
 
-    private String categoryId;
+    private String categoryId;   //类别ID
 
-    private String category;
+    private String category;   //类别
 
-    private String commandRelationship;
+    private String commandRelationship;   //指挥关系
 
-    private String warZone;
+    private String warZone;  //战区
 
-    private String campId;
+    private String campId;  //营区ID
 
-    private String camp;
+    private String camp;  //营区
 
-    private String task;
+    private String task;  //任务
 
-    private String concreteTasks;
+    private String concreteTasks;  //具体任务
 
     private String establishment;   //  编制
 
-    private String peacetimeGarrison;
+    private String peacetimeGarrison;  //平时驻地
 
-    private String peacetimeGarrisonLongitude;
+    private String peacetimeGarrisonLongitude;//平时驻地经度
 
-    private String peacetimeGarrisonLatitude;
+    private String peacetimeGarrisonLatitude;//平时驻地纬度
 
-    private String wartimeGarrison;
+    private String wartimeGarrison;//战时驻地
 
-    private String wartimeGarrisonLongitude;
+    private String wartimeGarrisonLongitude;//战时驻地经度
 
-    private String wartimeGarrisonLatitude;
+    private String wartimeGarrisonLatitude;//战时驻地纬度
 
-    private String establishmentDate;
+    private String establishmentDate;//成立日期
 
-    private String abolitionDate;
+    private String abolitionDate;//裁撤日期
 
-    private String baseInfo;
+    private String baseInfo;//基本情况
 
-    private String detailedInfo;
+    private String detailedInfo;//详细情况
 
-    private String remarks1;
+    private String remarks1;//备注1
 
-    private String remarks2;
+    private String remarks2;//备注2
 }

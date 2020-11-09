@@ -22,4 +22,6 @@ public interface CharacterDataMapper{
     public Integer deleteCharacterData(CharacterData characterData); //通过人员ID与人员姓名 定位
 
     public Integer modifyAttributeValue(String personId, Map<String, String> map);
+
+    public List<String> showAllColumns();
 }

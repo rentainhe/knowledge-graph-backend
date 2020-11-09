@@ -26,6 +26,8 @@ public interface EquipmentTreeMapper {
     public Integer modifyAttributeName(String oldAttributeName, String newAttributeName);
     public Integer modifyAttributeValue(String equipmentId, Map<String, String> map);
 
+    public List<String> showAllColumns();
+
     public void testEquipmentTreeMapper();
 
 }

@@ -36,4 +36,8 @@
         </set>
         where 人员ID = #{personId}
     </update>
+
+    <select id="showAllColumns" resultType="String">
+        SHOW FULL COLUMNS FROM 人物资料
+    </select>
 </mapper>

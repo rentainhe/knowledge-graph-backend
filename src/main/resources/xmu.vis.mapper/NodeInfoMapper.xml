@@ -22,4 +22,8 @@
     <insert id="insertANodeInfo" parameterType="xmu.vis.domain.NodeInfo">
         insert into 节点信息 (节点ID,节点类型,节点名称) values (#{nodeId}, #{label}, #{nodeName})
     </insert>
+
+    <select id="showAllColumns" resultType="String">
+        SHOW FULL COLUMNS FROM 节点信息
+    </select>
 </mapper>

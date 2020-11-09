@@ -57,4 +57,7 @@
         where 装备ID = #{equipmentId}
     </update>
 
+    <select id="showAllColumns" resultType="String">
+        SHOW FULL COLUMNS FROM 装备树
+    </select>
 </mapper>

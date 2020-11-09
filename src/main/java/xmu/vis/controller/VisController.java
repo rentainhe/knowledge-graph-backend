@@ -1,6 +1,7 @@
 package xmu.vis.controller;
 
 import com.alibaba.druid.sql.dialect.oracle.ast.expr.OracleSizeExpr;
+import com.sun.org.apache.xerces.internal.xs.LSInputList;
 import javafx.scene.control.TextFormatter;
 import net.sf.json.JSONObject;
 import org.apache.catalina.util.RequestUtil;
@@ -324,6 +325,10 @@ public class VisController {
     //增加 Unit 节点
     @PostMapping("addUnitSequenceNode")
     public Object addUnitSequenceNode(@RequestBody UnitSequence unitSequence){
+        if(unitSequenceMapper.insertUnitSequence(unitSequence)==1){
+            return ResponseUtil.ok();}
+        else{
+            return ResponseUtil.fail();}
         if (unitSequence.getUnitId() == null){
             return ResponseUtil.fail(-1,"New Unit Sequence must has unitId!");
         }
@@ -341,36 +346,48 @@ public class VisController {
     //增加 CharacterData 节点
     @PostMapping("addCharacterDataNode")
     public Object addCharacterDataNode(@RequestBody CharacterData characterData){
-        if (characterData.getPersonId() == null){
-            return ResponseUtil.fail(-1, "New CharacterData must has personId!");
+        if(characterDataMapper.insertCharacterData(characterData)==1){
+            return ResponseUtil.ok();
         }
-        //检查节点是否存在
-        if (visService.checkNodeInfoExist(characterData.getPersonId())){
-            return ResponseUtil.fail(-1,"This Person Node has already existed!");
-        }
-        else {
-            if(visService.addACharacterDataNode(characterData)){
-                return ResponseUtil.ok();
-            }
+        else{
             return ResponseUtil.fail();
         }
+//        if (characterData.getPersonId() == null){
+//            return ResponseUtil.fail(-1, "New CharacterData must has personId!");
+//        }
+//        //检查节点是否存在
+//        if (visService.checkNodeInfoExist(characterData.getPersonId())){
+//            return ResponseUtil.fail(-1,"This Person Node has already existed!");
+//        }
+//        else {
+//            if(visService.addACharacterDataNode(characterData)){
+//                return ResponseUtil.ok();
+//            }
+//            return ResponseUtil.fail();
+//        }
     }
     //增加 EquipmentTree 节点
     @PostMapping("addEquipmentTreeNode")
     public Object addEquipmentTreeNode(@RequestBody EquipmentTree equipmentTree){
-        if (equipmentTree.getEquipmentId() == null){
-            return ResponseUtil.fail(-1, "New EquipmentTree must has equipmentTreeId!");
+        if(equipmentTreeMapper.insertEquipmentTree(equipmentTree)==1){
+            return ResponseUtil.ok();
         }
-        //检查节点是否存在
-        if (visService.checkNodeInfoExist(equipmentTree.getEquipmentId())){
-            return ResponseUtil.fail(-1,"This Equipment Node has already existed!");
-        }
-        else {
-            if(visService.addAEquipmentTreeNode(equipmentTree)){
-                return ResponseUtil.ok();
-            }
+        else{
             return ResponseUtil.fail();
         }
+//        if (equipmentTree.getEquipmentId() == null){
+//            return ResponseUtil.fail(-1, "New EquipmentTree must has equipmentTreeId!");
+//        }
+//        //检查节点是否存在
+//        if (visService.checkNodeInfoExist(equipmentTree.getEquipmentId())){
+//            return ResponseUtil.fail(-1,"This Equipment Node has already existed!");
+//        }
+//        else {
+//            if(visService.addAEquipmentTreeNode(equipmentTree)){
+//                return ResponseUtil.ok();
+//            }
+//            return ResponseUtil.fail();
+//        }
     }
 
     //删除 Unit 节点
@@ -456,9 +473,15 @@ public class VisController {
     }
 
     //查询表头
-    @GetMapping("/showRelationTupleColumn")
-    public Object showRelationTupleColumn(){
-        return ResponseUtil.ok(relationTupleMapper.showAllColumn());
+    @GetMapping("/showAllTableColumns")
+    public Object showAllTableColumns(){
+        HashMap<String, List<String>> result = new HashMap<String, List<String>>();
+        result.put("关系三元组", visService.showRelationTupleColumns());
+        result.put("节点信息",visService.showNodeInfoColumns());
+        result.put("单位序列",visService.showUnitSequenceColumns());
+        result.put("人物资料",visService.showCharacterDataColumns());
+        result.put("装备树",visService.showEquipmentTreeColumns());
+        return ResponseUtil.ok(result);
     }
 
 

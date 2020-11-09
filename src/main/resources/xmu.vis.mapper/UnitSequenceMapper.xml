@@ -65,6 +65,8 @@
         where 单位ID = #{unitId}
     </update>
 
-
+    <select id="showAllColumns" resultType="String">
+        SHOW FULL COLUMNS FROM 单位序列
+    </select>
 
 </mapper>

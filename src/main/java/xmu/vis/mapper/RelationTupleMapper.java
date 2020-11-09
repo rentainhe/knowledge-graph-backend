@@ -33,5 +33,5 @@ public interface RelationTupleMapper {
     public Integer deleteExistRelation(RelationTuple targetRelation);//删除已有的关系
     public Integer updateRelation(@Param("oldRelationTuple") RelationTuple oldRelationTuple, String newRelationName);//更改已有的关系 map中key为原三元组 value为更改后的关系
 
-    public List<String> showAllColumn();//返回表结构
+    public List<String> showAllColumns();//返回表结构
 }

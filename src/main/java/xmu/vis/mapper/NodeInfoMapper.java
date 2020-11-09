@@ -19,4 +19,6 @@ public interface NodeInfoMapper {
     public Integer deleteANodeInfo(NodeInfo nodeInfo);
 
     public Integer insertANodeInfo(NodeInfo nodeInfo);
+
+    public List<String> showAllColumns();
 }

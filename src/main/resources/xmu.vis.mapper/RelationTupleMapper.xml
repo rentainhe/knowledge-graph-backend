@@ -58,7 +58,7 @@
             where 父节点ID=#{oldRelationTuple.fatherId} and 父节点名称=#{oldRelationTuple.fatherName} and 子节点ID=#{oldRelationTuple.childId} and 子节点名称=#{oldRelationTuple.childName} and 关系名称=#{oldRelationTuple.relationName}
     </update>
 
-    <select id="showAllColumn" resultType="String">
+    <select id="showAllColumns" resultType="String">
         SHOW FULL COLUMNS FROM 关系三元组
     </select>
 </mapper>

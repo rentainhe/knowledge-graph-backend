@@ -424,6 +424,7 @@ public class VisService {
         return unitSequenceMapper.modifyAttributeValue(unitId, map);
     }
 
+    public List<String> showUnitSequenceColumns(){return unitSequenceMapper.showAllColumns();}
     //characterDataMapper
     public CharacterData getCharacterDataById(String personId){
         return characterDataMapper.getCharacterDataById(personId);
@@ -441,6 +442,7 @@ public class VisService {
         return characterDataMapper.modifyAttributeValue(personId, map);
     }//通过人员ID 定位
 
+    public List<String> showCharacterDataColumns(){return characterDataMapper.showAllColumns();}
     //equipmentTreeMapper
     public EquipmentTree getEquipmentTreeById(String equipmentId){
         return equipmentTreeMapper.getEquipmentById(equipmentId);
@@ -458,6 +460,7 @@ public class VisService {
         return equipmentTreeMapper.modifyAttributeValue(equipmentId, map);
     }//通过装备ID 定位
 
+    public List<String> showEquipmentTreeColumns(){return equipmentTreeMapper.showAllColumns();}
     //relationTupleMapper
     public List<RelationTuple> getAllRelationTuple(){
         return relationTupleMapper.getAllRelation();
@@ -499,6 +502,9 @@ public class VisService {
         return relationTupleMapper.updateRelation(oldRelationTuple, newRelationName);
     }//更改已有的关系名称
 
+    public List<String> showRelationTupleColumns(){
+        return relationTupleMapper.showAllColumns();
+    }
     //nodeInfoMapper
     public List<NodeInfo> getAllNodeInfo(){
         return nodeInfoMapper.getAllNodeInfo();
@@ -516,6 +522,7 @@ public class VisService {
         return nodeInfoMapper.insertANodeInfo(nodeInfo);
     }
 
+    public List<String> showNodeInfoColumns(){return nodeInfoMapper.showAllColumns();}
     //equipmentTypeMapper
     public EquipmentType getEquipmentTypeById(String euqipmentId){
         return equipmentTypeMapper.getEquipmentTypeById(euqipmentId);

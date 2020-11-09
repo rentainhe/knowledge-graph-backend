@@ -26,6 +26,7 @@ public interface UnitSequenceMapper {
     public Integer modifyAttributeName(String oldAttributeName, String newAttributeName);
     public Integer modifyAttributeValue(String unitId, Map<String, String> map);
 
+    public List<String> showAllColumns();
     //public Integer changeUnitAttirbuteById(String unitID, UnitSequence newUnitAttribute);
     public void testUnitSequenceMapper();
 
