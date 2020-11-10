@@ -261,15 +261,17 @@ public class VisService {
         if(checkNodeInfoExist(equipmentTree.getEquipmentId())){
             return false;
         }
-        if(insertEquipmentTree(equipmentTree)!=1){
-            return false;//插入<装备树>表中
+        else {
+            if (insertEquipmentTree(equipmentTree)!=1) {
+                return false;//插入<装备树>表中
+            }
+            NodeInfo nodeInfo = new NodeInfo();
+            nodeInfo.setNodeId(equipmentTree.getEquipmentId());
+            nodeInfo.setLabel(1);
+            nodeInfo.setNodeName(equipmentTree.getEquipmentName());
+            //插入到<节点信息>表中
+            return insertANodeInfo(nodeInfo) == 1;
         }
-        NodeInfo nodeInfo = new NodeInfo();
-        nodeInfo.setNodeId(equipmentTree.getEquipmentId());
-        nodeInfo.setLabel(1);
-        nodeInfo.setNodeName(equipmentTree.getEquipmentName());
-        //插入到<节点信息>表中
-        return insertANodeInfo(nodeInfo)==1;
 //        //(新添加的装备树必须属于<装备类型>表中的某一类装备)
 //        if((getEquipmentTypeById(equipmentTree.getEquipmentTypeId()) != null) &&
 //                (getEquipmentTypeById(equipmentTree.getEquipmentTypeId()) == getEquipmentTypeByName(equipmentTree.getEquipmentType()))){
