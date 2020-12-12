@@ -8,7 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="KnowledgeGraphVis-mysql(final)" />
-        <module name="KnowledgeVis" />
+        <module name="KnowledgeVis_Oldversion" />
         <module name="KnowledgeGraphVis-mysql" />
         <module name="KnowledgeGraphVis-mysql(1)" />
       </profile>
@@ -19,7 +19,7 @@
       <module name="KnowledgeGraphVis-mysql" options="-parameters" />
       <module name="KnowledgeGraphVis-mysql(1)" options="-parameters" />
       <module name="KnowledgeGraphVis-mysql(final)" options="-parameters" />
-      <module name="KnowledgeVis" options="-parameters" />
+      <module name="KnowledgeVis_Oldversion" options="-parameters" />
     </option>
   </component>
 </project>
