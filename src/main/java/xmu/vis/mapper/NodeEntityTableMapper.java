@@ -13,5 +13,5 @@ import java.util.HashMap;
 public interface NodeEntityTableMapper {
     public NodeEntityTable getNodeEntityAttributeByid(String nodeinfoid);
 
-    public Integer updateNodeEntityAttributeById(@Param() String nodeId, HashMap<String, String> updatedAttribute);
+    public Integer updateNodeEntityAttributeById(String nodeId, HashMap<String, String> updatedAttribute);
 }
