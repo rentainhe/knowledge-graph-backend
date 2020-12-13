@@ -7,5 +7,5 @@ import java.io.Serializable;
 public class NodeTypeTable implements Serializable{
     private String nodetypeid;//节点类型id
     private String nodetypename;//节点类型名
-    private String nodeattribute;//该类型节点属性
+    private String nodetypeattribute;//该类型节点属性
 }
