@@ -49,18 +49,18 @@ public class VisController {
 
 
     //更新一个节点的属性信息
-    @PostMapping("/updateNodeEntityAttribute")
-    public Object updateNodeEntityAttribute(@RequestBody NodeEntityTable newNodeEntity){
-        HashMap<String, String> nodeAttribute = new HashMap<>();
-        nodeAttribute  = visService.queryNodeAttributeHashMap(newNodeEntity);
-        Integer result = nodeEntityTableMapper.updateNodeEntityAttributeById(newNodeEntity.getNodeentityid(), nodeAttribute);
-        if (result == 1){
-            return ResponseUtil.ok();
-        }
-        else{
-            return ResponseUtil.fail();
-        }
-    }
+//    @PostMapping("/updateNodeEntityAttribute")
+//    public Object updateNodeEntityAttribute(@RequestBody NodeEntityTable newNodeEntity){
+//        HashMap<String, String> nodeAttribute = new HashMap<>();
+//        nodeAttribute  = visService.queryNodeAttributeHashMap(newNodeEntity);
+//        Integer result = nodeEntityTableMapper.updateNodeEntityAttributeById(newNodeEntity.getNodeentityid(), nodeAttribute);
+//        if (result == 1){
+//            return ResponseUtil.ok();
+//        }
+//        else{
+//            return ResponseUtil.fail();
+//        }
+//    }
     //增加一个新的实体节点
     @PostMapping("/addNewNodeEntity")
     public Object addNewNodeEntity(@RequestBody NodeEntityTable newNodeEntity){
@@ -75,6 +75,17 @@ public class VisController {
     public Object test(@PathVariable String variable) {
         String result = visService.getNodeAttributeDictByNodeTypeId(variable);
         return ResponseUtil.ok(result);
+    }
+
+    @PostMapping("/deleteNodeType/{nodeTypeName}")
+    public Object deleteNodeType(@PathVariable String nodeTypeName){
+        Integer result = visService.deleteNodeType(nodeTypeName);
+        if (result==1){
+            return ResponseUtil.ok();
+        }
+        else{
+            return ResponseUtil.fail();
+        }
     }
 
 }

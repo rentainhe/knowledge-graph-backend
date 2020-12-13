@@ -34,4 +34,8 @@ public class VisService {
 //        HashMap<String, String> attribute_hashmap = new HashMap<>();
         return attribute_str;
     }
+
+    public Integer deleteNodeType(String nodeTypeName){
+        return nodeTypeTableMapper.deleteNodeType(nodeTypeName);
+    }
 }

@@ -9,4 +9,12 @@
     <select id="getNodeAttributeDictByNodeTypeId" parameterType="String" resultType="String">
         select nodetypeattribute from NodeTypeTable where nodetypeid=#{nodeTypeId}
     </select>
+
+    <delete id="deleteNodeType" parameterType="String">
+        delete from NodeTypeTable where nodetypename=#{nodeTypeName}
+    </delete>
+
+    <update id="deleteNodeAttributeByAttributeName" parameterType="String">
+        set
+    </update>
 </mapper>
