@@ -35,7 +35,32 @@ public class VisService {
         return attribute_str;
     }
 
+    //根据传入的hashmaps解析成str
+    /*
+        hashmaps:[{"value":"xxx"},{"value":"xxx"},{"value":"xxx"},{"value":"xxx"},...]
+     */
+    public String transformHashMapintoStr(List<HashMap<String, String>> attribute_hashmaps){
+        if(attribute_hashmaps.isEmpty()){ return "Empty HashMap"; }
+        else {
+                StringBuilder attribute_string = new StringBuilder("");
+                for (HashMap<String, String> attribute_hashmap: attribute_hashmaps) {
+                    attribute_string.append(attribute_hashmap.get("value"));
+                    attribute_string.append(",");
+                }
+            return attribute_string.substring(0, attribute_string.length()-1);
+            }
+    }
+
+
     public Integer deleteNodeType(String nodeTypeName){
         return nodeTypeTableMapper.deleteNodeType(nodeTypeName);
+    }
+
+    public Integer addNewNodeType(NodeTypeTable newNodeType){
+        return nodeTypeTableMapper.addNewNodeType(newNodeType);
+    }
+
+    public Integer addNewNodeEntity(NodeEntityTable newNodeEntity){
+        return nodeEntityTableMapper.addNewNodeEntity(newNodeEntity);
     }
 }

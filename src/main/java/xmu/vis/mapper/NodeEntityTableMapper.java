@@ -15,6 +15,7 @@ public interface NodeEntityTableMapper {
 
     public Integer updateNodeEntityAttributeById(String nodeId, HashMap<String, String> updatedAttribute);
 
+    public Integer addNewNodeEntity(NodeEntityTable newnodeEntity);
 //    public Integer updateNodeEntityAttributeById(@Param() String nodeId, HashMap<String, String> updatedAttribute);
 
 }

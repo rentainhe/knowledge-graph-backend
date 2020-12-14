@@ -6,6 +6,9 @@
         select * from NodeEntityTable where nodeentityid=#{nodeinfoid}
     </select>
 
+    <insert id="addNewNodeEntity" parameterType="xmu.vis.domain.NodeEntityTable">
+        insert into NodeEntityTable (nodenetityid, nodeentitytypeid, nodeentityattribute) values (#{nodenetityid}, #{nodeentitytypeid}, #{nodeentityattribute})
+    </insert>
 
     <update id="updateNodeEntityAttributeById" >
         update NodeEntityTable
