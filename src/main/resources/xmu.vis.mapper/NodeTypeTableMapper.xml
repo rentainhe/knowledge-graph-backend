@@ -6,6 +6,11 @@
         insert into NodeTypeTable (nodetypeid, nodetypename, nodetypeattribute) values (#{nodetypeid}, #{nodetypename}, #{nodetypeattribute})
     </insert>
 
+    <select id="getAllNodeTypeNameAndAttribute" resultType="xmu.vis.domain.NodeTypeTable">
+        select * from NodeTypeTable
+    </select>
+
+
     <select id="getNodeAttributeDictByNodeTypeId" parameterType="String" resultType="String">
         select nodetypeattribute from NodeTypeTable where nodetypeid=#{nodeTypeId}
     </select>
@@ -14,7 +19,5 @@
         delete from NodeTypeTable where nodetypename=#{nodeTypeName}
     </delete>
 
-    <update id="deleteNodeAttributeByAttributeName" parameterType="String">
-        set
-    </update>
+
 </mapper>

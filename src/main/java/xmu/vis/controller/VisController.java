@@ -28,6 +28,36 @@ public class VisController {
     @Autowired
     private NodeTypeTableMapper nodeTypeTableMapper;
 
+
+
+    // 增加一系列节点类型(投产)
+    @PostMapping("/addListNewNodeType")
+    public Object addListNewNodeType(@RequestBody List<TableKeywords> listofNewNodeType){
+        for (TableKeywords aTableKeywords : listofNewNodeType){
+            String attribute_string = visService.transformHashMapintoStr(aTableKeywords.getkeyWords());
+            if (attribute_string.equals("Empty HashMap")){
+                return ResponseUtil.fail();
+            }
+            NodeTypeTable nodeTypeTable = new NodeTypeTable();
+            nodeTypeTable.setNodetypeid("testid");
+            nodeTypeTable.setNodetypename(aTableKeywords.getTableName());
+            nodeTypeTable.setNodetypeattribute(attribute_string);
+            visService.addNewNodeType(nodeTypeTable);
+        }
+        return ResponseUtil.ok();
+    }
+
+    // 返回所有数据库以及对应字段
+    @GetMapping("/getAllDataBaseAndAttribute")
+    public Object getAllDataBaseAndAttribute(){
+        List<TableKeywords> result = visService.transformNodeTypeTableintoTableKeywords(nodeTypeTableMapper.getAllNodeTypeNameAndAttribute());
+        if (result.size() == 0){
+            return ResponseUtil.fail(-1,"null database");
+        }
+        else {
+            return ResponseUtil.ok(result);
+        }
+    }
     //通过id获得一个实体节点的属性信息(done)
     @GetMapping("/getEntityNodeInfoByid/{nodeentityid}")
     public Object getEntityNodeInfoByid(@PathVariable String nodeentityid){
@@ -60,22 +90,7 @@ public class VisController {
         }
     }
 
-    // 增加一系列节点类型
-    @PostMapping("/addListNewNodeType")
-    public Object addListNewNodeType(@RequestBody List<TableKeywords> listofNewNodeType){
-        for (TableKeywords aTableKeywords : listofNewNodeType){
-            String attribute_string = visService.transformHashMapintoStr(aTableKeywords.getkeyWords());
-            if (attribute_string.equals("Empty HashMap")){
-                return ResponseUtil.fail();
-            }
-            NodeTypeTable nodeTypeTable = new NodeTypeTable();
-            nodeTypeTable.setNodetypeid("testid");
-            nodeTypeTable.setNodetypename(aTableKeywords.getTableName());
-            nodeTypeTable.setNodetypeattribute(attribute_string);
-            visService.addNewNodeType(nodeTypeTable);
-        }
-        return ResponseUtil.ok();
-    }
+
 
     //更新一个节点的属性信息
 //    @PostMapping("/updateNodeEntityAttribute")

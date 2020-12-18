@@ -2,10 +2,12 @@ package xmu.vis.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import xmu.vis.controller.TableKeywords;
 import xmu.vis.domain.*;
 import xmu.vis.mapper.*;
 
 
+import javax.validation.constraints.Max;
 import java.util.*;
 
 @Service
@@ -35,7 +37,7 @@ public class VisService {
         return attribute_str;
     }
 
-    //根据传入的hashmaps解析成str
+    //根据传入的hashmaps解析成str   前端   ----->  数据库(投产)
     /*
         hashmaps:[{"value":"xxx"},{"value":"xxx"},{"value":"xxx"},{"value":"xxx"},...]
      */
@@ -51,6 +53,25 @@ public class VisService {
             }
     }
 
+    //将NodeTypeTable以TableKeywords形式返回前端    数据库  -----> 前端
+    public List<TableKeywords> transformNodeTypeTableintoTableKeywords(List<NodeTypeTable> allNodeTypeTable){
+        List<TableKeywords> result = new ArrayList<>();
+        for (NodeTypeTable aNodeTypeTable: allNodeTypeTable){
+            TableKeywords aTableKeywords = new TableKeywords();
+            aTableKeywords.setTableName(aNodeTypeTable.getNodetypename());//set表名
+
+            List<HashMap<String, String>> aListNodeTypeAttribute = new ArrayList<>();
+            String[] array = aNodeTypeTable.getNodetypeattribute().split(",");
+            for (String attr : array) {
+                HashMap<String, String> aAttribute = new HashMap<String, String>();
+                aAttribute.put("value", attr);
+                aListNodeTypeAttribute.add(aAttribute);
+            }
+            aTableKeywords.setKeyWords(aListNodeTypeAttribute);
+            result.add(aTableKeywords);
+        }
+        return result;
+    }
 
     public Integer deleteNodeType(String nodeTypeName){
         return nodeTypeTableMapper.deleteNodeType(nodeTypeName);
