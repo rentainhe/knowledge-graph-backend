@@ -2,20 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xmu.vis.mapper.NodeEntityTableMapper">
 
-    <select id="getNodeEntityAttributeByid" resultType="xmu.vis.domain.NodeEntityTable">
-        select * from NodeEntityTable where nodeentityid=#{nodeinfoid}
-    </select>
-
     <insert id="addNewNodeEntity" parameterType="xmu.vis.domain.NodeEntityTable">
-        insert into NodeEntityTable (nodenetityid, nodeentitytypeid, nodeentityattribute) values (#{nodenetityid}, #{nodeentitytypeid}, #{nodeentityattribute})
+        insert into NodeEntityTable (nodeEntityKey, nodeEntityTypeName, nodeEntityAttribute) values (#{nodeEntityKey}, #{nodeEntityTypeName}, #{nodeEntityAttribute})
     </insert>
 
-    <update id="updateNodeEntityAttributeById" >
-        update NodeEntityTable
-        <set>
-            <foreach collection="updatedAttribute.entrySet()" index="key" item="value" separator=",">
-                ${key} = #{value}
-            </foreach>
-        </set>
-    </update>
+
 </mapper>

@@ -5,8 +5,8 @@ import java.io.Serializable;
 
 @Data
 public class RelationTupleTable implements Serializable{
-    private String fathernodeid;
-    private String childnodeid;
-    private String relationtypeid;
-    private String relationattribute;
+    private String fatherNodeKey;// 唯一key
+    private String childNodeKey;// 唯一key
+    private String relationTypeName;
+    private String relationAttribute;
 }

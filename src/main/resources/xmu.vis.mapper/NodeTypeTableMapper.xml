@@ -3,7 +3,7 @@
 <mapper namespace="xmu.vis.mapper.NodeTypeTableMapper">
 
     <insert id="addNewNodeType" parameterType="xmu.vis.domain.NodeTypeTable">
-        insert into NodeTypeTable (nodetypeid, nodetypename, nodetypeattribute) values (#{nodetypeid}, #{nodetypename}, #{nodetypeattribute})
+        insert into NodeTypeTable (nodeTypeName, nodeTypeAttribute) values ( #{nodeTypeName}, #{nodeTypeAttribute})
     </insert>
 
     <select id="getAllNodeTypeNameAndAttribute" resultType="xmu.vis.domain.NodeTypeTable">

@@ -28,26 +28,24 @@ public class VisController {
     @Autowired
     private NodeTypeTableMapper nodeTypeTableMapper;
 
-
-
-    // 增加一系列节点类型(投产)
+    // 增加一系列节点类型(done)
     @PostMapping("/addListNewNodeType")
     public Object addListNewNodeType(@RequestBody List<TableKeywords> listofNewNodeType){
         for (TableKeywords aTableKeywords : listofNewNodeType){
-            String attribute_string = visService.transformHashMapintoStr(aTableKeywords.getkeyWords());
+            String attribute_string = visService.transformTableKeywordsHashMapintoStr(aTableKeywords.getKeyWords());
             if (attribute_string.equals("Empty HashMap")){
                 return ResponseUtil.fail();
             }
+
             NodeTypeTable nodeTypeTable = new NodeTypeTable();
-            nodeTypeTable.setNodetypeid("testid");
-            nodeTypeTable.setNodetypename(aTableKeywords.getTableName());
-            nodeTypeTable.setNodetypeattribute(attribute_string);
+            nodeTypeTable.setNodeTypeName(aTableKeywords.getTableName());
+            nodeTypeTable.setNodeTypeAttribute(attribute_string);
             visService.addNewNodeType(nodeTypeTable);
         }
         return ResponseUtil.ok();
     }
 
-    // 返回所有数据库以及对应字段
+    // 返回所有数据库以及对应字段(done)
     @GetMapping("/getAllDataBaseAndAttribute")
     public Object getAllDataBaseAndAttribute(){
         List<TableKeywords> result = visService.transformNodeTypeTableintoTableKeywords(nodeTypeTableMapper.getAllNodeTypeNameAndAttribute());
@@ -58,25 +56,45 @@ public class VisController {
             return ResponseUtil.ok(result);
         }
     }
-    //通过id获得一个实体节点的属性信息(done)
-    @GetMapping("/getEntityNodeInfoByid/{nodeentityid}")
-    public Object getEntityNodeInfoByid(@PathVariable String nodeentityid){
-        NodeEntityTable noderesult = nodeEntityTableMapper.getNodeEntityAttributeByid(nodeentityid);
-        HashMap<String, String> nodeattribute = visService.queryNodeAttributeHashMap(noderesult);
-        return ResponseUtil.ok(nodeattribute);
+
+    // 批量上传实体数据
+    @PostMapping("/addListNewNodeEntity")
+    public Object addListNewNodeEntity(@RequestBody List<RelationTupleEntity> listofNewNodeEntity){
+        HashSet<NodeEntityTable> nodeEntitySet = new HashSet<>();
+        for (RelationTupleEntity aRelationTupleEntity: listofNewNodeEntity){
+            NodeEntityTable aNewNodeEntity_father = new NodeEntityTable();
+            aNewNodeEntity_father.setNodeEntityKey(aRelationTupleEntity.getFatherNodeEntityKey());
+            aNewNodeEntity_father.setNodeEntityTypeName(aRelationTupleEntity.getFatherNodeTypeName());
+            aNewNodeEntity_father.setNodeEntityAttribute(aRelationTupleEntity.getFatherNodeEntityAttribute());
+            nodeEntitySet.add(aNewNodeEntity_father);
+
+            NodeEntityTable aNewNodeEntity_child = new NodeEntityTable();
+            aNewNodeEntity_child.setNodeEntityKey(aRelationTupleEntity.getChildNodeEntityKey());
+            aNewNodeEntity_child.setNodeEntityTypeName(aRelationTupleEntity.getChildNodeTypeName());
+            aNewNodeEntity_child.setNodeEntityAttribute(aRelationTupleEntity.getChildNodeEntityAttribute());
+            nodeEntitySet.add(aNewNodeEntity_child);
+
+            // 添加关系
+            if (aRelationTupleEntity.getRelationTypeName().equals("")){
+                continue;
+            }
+            else{
+                RelationTupleTable relationTupleTable = new RelationTupleTable();
+                relationTupleTable.setFatherNodeKey(aRelationTupleEntity.getFatherNodeEntityKey());
+                relationTupleTable.setChildNodeKey(aRelationTupleEntity.getChildNodeEntityKey());
+                relationTupleTable.setRelationTypeName(aRelationTupleEntity.getRelationTypeName());
+                relationTupleTable.setRelationAttribute(aRelationTupleEntity.getRelationTypeAttribute());
+                visService.addNewRelationTuple(relationTupleTable);
+            }
+        }
+
+        // 添加到nodeEntityTable
+        for (NodeEntityTable nodeEntityTable: nodeEntitySet) {
+            visService.addNewNodeEntity(nodeEntityTable);
+        }
+        return ResponseUtil.ok();
     }
 
-    //增加节点类型
-    @PostMapping("/addNewNodeType")
-    public Object addNewNodeType(@RequestBody NodeTypeTable newNodeType){
-        Integer flag = visService.addNewNodeType(newNodeType);
-        if (flag == 1){
-            return ResponseUtil.ok();
-        }
-        else{
-            return ResponseUtil.fail();
-        }
-    }
 
     // 删除节点类型
     @GetMapping("/deleteNodeType/{nodeTypeName}")
@@ -92,38 +110,9 @@ public class VisController {
 
 
 
-    //更新一个节点的属性信息
-//    @PostMapping("/updateNodeEntityAttribute")
-//    public Object updateNodeEntityAttribute(@RequestBody NodeEntityTable newNodeEntity){
-//        HashMap<String, String> nodeAttribute = new HashMap<>();
-//        nodeAttribute  = visService.queryNodeAttributeHashMap(newNodeEntity);
-//        Integer result = nodeEntityTableMapper.updateNodeEntityAttributeById(newNodeEntity.getNodeentityid(), nodeAttribute);
-//        if (result == 1){
-//            return ResponseUtil.ok();
-//        }
-//        else{
-//            return ResponseUtil.fail();
-//        }
-//    }
 
-    //增加一个新的实体节点
-    @PostMapping("/addNewNodeEntity")
-    public Object addNewNodeEntity(@RequestBody NodeEntityTable newNodeEntity){
-        Integer result = visService.addNewNodeEntity(newNodeEntity);
-        if( result == 1){
-            return ResponseUtil.ok();
-        }
-        else{
-            return ResponseUtil.fail();
-        }
-    }
 
-    //test
-    @PostMapping("/test")
-    public Object test(@RequestBody List<HashMap<String,String>> input) {
-        String result = visService.transformHashMapintoStr(input);
-        return ResponseUtil.ok(result);
-    }
+
 
 
 
