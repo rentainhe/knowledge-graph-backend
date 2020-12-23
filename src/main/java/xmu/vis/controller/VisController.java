@@ -3,6 +3,7 @@ package xmu.vis.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import xmu.vis.domain.*;
 import xmu.vis.mapper.*;
 import xmu.vis.service.VisService;
@@ -11,6 +12,7 @@ import xmu.vis.controller.*;
 
 import xmu.vis.utils.ResponseUtil;
 
+import javax.management.relation.Relation;
 import java.util.*;
 
 
@@ -111,8 +113,51 @@ public class VisController {
         }
     }
 
+    // 根据父节点名称找到其所有关系
+//    @GetMapping("/getRelationTupleFromFatherNodeKey/{fatherNodeKey}")
+//    public Object getRelationTupleFromFatherNodeKey(@PathVariable String fatherNodeKey){
+//        List<RelationTupleTable> result = visService.getRelationTupleFromFatherNodeKey(fatherNodeKey);
+//        return ResponseUtil.ok(result);
+//    }
+//
+//    @GetMapping("/getRelationTupleFromChildNodeKey/{childNodeKey}")
+//    public Object getRelationTupleFromChildNodeKey(@PathVariable String childNodeKey){
+//        List<RelationTupleTable> result = visService.getRelationTupleFromChildNodeKey(childNodeKey);
+//        return ResponseUtil.ok(result);
+//    }
+    // 返回init节点
+    @GetMapping("initGraphNodesInfo")
+    public Object initGraphNodesInfo(){
+        List<NodeEntityTable> top_5_node = visService.initGraph(); // 获取前五个node节点
+        HashSet<NodeEntityTable> nodeSet = new HashSet<>();
+        for (NodeEntityTable node: top_5_node){
+            List<RelationTupleTable> levelOneFatherRelationTuple = visService.getRelationTupleFromFatherNodeKey(node.getNodeEntityKey());
+            for(RelationTupleTable relationTupleTable: levelOneFatherRelationTuple) {
+                nodeSet.add(visService.getNodeEntityByNodeKey(relationTupleTable.getChildNodeKey()));
+                //根据key值查nodeEntityTable
+            }
+            List<RelationTupleTable> levelOneChildRelationTuple = visService.getRelationTupleFromChildNodeKey(node.getNodeEntityKey());
+            for(RelationTupleTable relationTupleTable: levelOneChildRelationTuple) {
+                nodeSet.add(visService.getNodeEntityByNodeKey(relationTupleTable.getFatherNodeKey()));
+                //根据key值查nodeEntityTable
+            }
+        }
+        return ResponseUtil.ok(nodeSet);
+    }
 
 
+    // 返回init 关系三元组
+    @GetMapping("initGraphRelationTuple")
+    public Object initGraphRelationTuple(){
+        List<NodeEntityTable> top_5_node = visService.initGraph(); // 获取前五个node节点
+        List<RelationTupleTable> RelaitonTupleResult = new ArrayList<>();
+        for (NodeEntityTable node: top_5_node){
+            RelaitonTupleResult.addAll(visService.getRelationTupleFromFatherNodeKey(node.getNodeEntityKey()));
+            RelaitonTupleResult.addAll(visService.getRelationTupleFromChildNodeKey(node.getNodeEntityKey()));
+        }
+        HashSet<RelationTupleTable> result = new HashSet<>(RelaitonTupleResult);
+        return ResponseUtil.ok(result);
+    }
 
 
 

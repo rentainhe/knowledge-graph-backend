@@ -6,5 +6,14 @@
         insert into RelationTupleTable (fatherNodeKey, childNodeKey, relationTypeName, relationAttribute) values (#{fatherNodeKey}, #{childNodeKey}, #{relationTypeName}, #{relationAttribute})
     </insert>
 
+    <select id="getRelationTupleFromFatherNodeKey" parameterType="xmu.vis.domain.RelationTupleTable"
+            resultType="xmu.vis.domain.RelationTupleTable">
+        select * from RelationTupleTable where fatherNodeKey=#{fatherNodeKey}
+    </select>
+    
+    <select id="getRelationTupleFromChildNodeKey" parameterType="xmu.vis.domain.RelationTupleTable"
+            resultType="xmu.vis.domain.RelationTupleTable">
+        select * from RelationTupleTable where childNodeKey=#{childNodeKey}
+    </select>
 
 </mapper>

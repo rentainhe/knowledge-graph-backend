@@ -56,18 +56,19 @@ public class VisService {
         }
         return result;
     }
-
+    // 给 nodeTypeName 给出这个类型 Key
     public String getKeyofNodeType(String nodeTypeName){
         String nodeAttribute_string = nodeTypeTableMapper.getNodeAttributebyNodeTypeName(nodeTypeName);
         String[] array = nodeAttribute_string.split(",");
         return array[0];
     }
+    // 给 实体属性（字符串）实体类型，给出实体主键的值
     public String getKeyAttributeValueofNodeEntity(String nodeEntityAttribute, String nodeEntityTypeName){
         HashMap<String, String> attributeHashMap = transformAttributeStringintoHashMap(nodeEntityAttribute);
         String key = getKeyofNodeType(nodeEntityTypeName);
         return attributeHashMap.get(key);
     }
-
+    // 把 字符串转化为 Json 字典
     public HashMap<String, String> transformAttributeStringintoHashMap(String attributeString){
         String[] array = attributeString.split(",");
         HashMap<String, String> result = new HashMap<>();
@@ -77,7 +78,24 @@ public class VisService {
         }
         return result;
     }
-    //
+    // 初始化返回前五个节点
+    public List<NodeEntityTable> initGraph(){
+        return nodeEntityTableMapper.initGraph();
+    }
+
+    // 通过父节点名字查询到所有关系
+    public List<RelationTupleTable> getRelationTupleFromFatherNodeKey(String fatherNodeKey){
+        return relationTupleTableMapper.getRelationTupleFromFatherNodeKey(fatherNodeKey);
+    }
+
+    public List<RelationTupleTable> getRelationTupleFromChildNodeKey(String childNodeKey){
+        return relationTupleTableMapper.getRelationTupleFromChildNodeKey(childNodeKey);
+    }
+
+    public NodeEntityTable getNodeEntityByNodeKey(String nodeEntityKey){
+        return nodeEntityTableMapper.getNodeEntityByNodeKey(nodeEntityKey);
+    }
+
     public Integer deleteNodeType(String nodeTypeName){
         return nodeTypeTableMapper.deleteNodeType(nodeTypeName);
     }

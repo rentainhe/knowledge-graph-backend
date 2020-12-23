@@ -13,4 +13,8 @@ import java.util.List;
 @Component
 public interface RelationTupleTableMapper {
     public Integer addNewRelationTuple(RelationTupleTable newRelationTuple);
+
+    public List<RelationTupleTable> getRelationTupleFromFatherNodeKey(String fatherNodeKey);
+
+    public List<RelationTupleTable> getRelationTupleFromChildNodeKey(String childNodeKey);
 }
