@@ -63,15 +63,18 @@ public class VisController {
         HashSet<NodeEntityTable> nodeEntitySet = new HashSet<>();
         for (RelationTupleEntity aRelationTupleEntity: listofNewNodeEntity){
             NodeEntityTable aNewNodeEntity_father = new NodeEntityTable();
-            aNewNodeEntity_father.setNodeEntityKey(aRelationTupleEntity.getFatherNodeEntityKey());
+
             aNewNodeEntity_father.setNodeEntityTypeName(aRelationTupleEntity.getFatherNodeTypeName());
             aNewNodeEntity_father.setNodeEntityAttribute(aRelationTupleEntity.getFatherNodeEntityAttribute());
+            String father_key = visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getFatherNodeEntityAttribute(), aRelationTupleEntity.getFatherNodeTypeName());
+            aNewNodeEntity_father.setNodeEntityKey(father_key);
             nodeEntitySet.add(aNewNodeEntity_father);
 
             NodeEntityTable aNewNodeEntity_child = new NodeEntityTable();
-            aNewNodeEntity_child.setNodeEntityKey(aRelationTupleEntity.getChildNodeEntityKey());
             aNewNodeEntity_child.setNodeEntityTypeName(aRelationTupleEntity.getChildNodeTypeName());
             aNewNodeEntity_child.setNodeEntityAttribute(aRelationTupleEntity.getChildNodeEntityAttribute());
+            String child_key = visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getChildNodeEntityAttribute(), aRelationTupleEntity.getChildNodeTypeName());
+            aNewNodeEntity_child.setNodeEntityKey(child_key);
             nodeEntitySet.add(aNewNodeEntity_child);
 
             // 添加关系
@@ -80,8 +83,8 @@ public class VisController {
             }
             else{
                 RelationTupleTable relationTupleTable = new RelationTupleTable();
-                relationTupleTable.setFatherNodeKey(aRelationTupleEntity.getFatherNodeEntityKey());
-                relationTupleTable.setChildNodeKey(aRelationTupleEntity.getChildNodeEntityKey());
+                relationTupleTable.setFatherNodeKey(visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getFatherNodeEntityAttribute(), aRelationTupleEntity.getFatherNodeTypeName()));
+                relationTupleTable.setChildNodeKey(visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getChildNodeEntityAttribute(), aRelationTupleEntity.getChildNodeTypeName()));
                 relationTupleTable.setRelationTypeName(aRelationTupleEntity.getRelationTypeName());
                 relationTupleTable.setRelationAttribute(aRelationTupleEntity.getRelationTypeAttribute());
                 visService.addNewRelationTuple(relationTupleTable);

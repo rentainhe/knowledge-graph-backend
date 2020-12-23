@@ -57,8 +57,26 @@ public class VisService {
         return result;
     }
 
+    public String getKeyofNodeType(String nodeTypeName){
+        String nodeAttribute_string = nodeTypeTableMapper.getNodeAttributebyNodeTypeName(nodeTypeName);
+        String[] array = nodeAttribute_string.split(",");
+        return array[0];
+    }
+    public String getKeyAttributeValueofNodeEntity(String nodeEntityAttribute, String nodeEntityTypeName){
+        HashMap<String, String> attributeHashMap = transformAttributeStringintoHashMap(nodeEntityAttribute);
+        String key = getKeyofNodeType(nodeEntityTypeName);
+        return attributeHashMap.get(key);
+    }
 
-
+    public HashMap<String, String> transformAttributeStringintoHashMap(String attributeString){
+        String[] array = attributeString.split(",");
+        HashMap<String, String> result = new HashMap<>();
+        for (String arrayele: array){
+            String[] keyvalue = arrayele.split(":");
+            result.put(keyvalue[0], keyvalue[1]);
+        }
+        return result;
+    }
     //
     public Integer deleteNodeType(String nodeTypeName){
         return nodeTypeTableMapper.deleteNodeType(nodeTypeName);

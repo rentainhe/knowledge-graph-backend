@@ -15,8 +15,9 @@ public interface NodeTypeTableMapper {
 
     public List<NodeTypeTable> getAllNodeTypeNameAndAttribute();//返回所有Nodetype以及对应属性
 
-    public String getNodeAttributeDictByNodeTypeId(String nodeTypeId);//获得某类型节点的属性
 
     public Integer deleteNodeType(String nodeTypeName); // 删除某类型节点
+
+    public String getNodeAttributebyNodeTypeName(String nodeTypeName);
 
 }

@@ -11,13 +11,15 @@
     </select>
 
 
-    <select id="getNodeAttributeDictByNodeTypeId" parameterType="String" resultType="String">
-        select nodetypeattribute from NodeTypeTable where nodetypeid=#{nodeTypeId}
-    </select>
+
 
     <delete id="deleteNodeType" parameterType="String">
         delete from NodeTypeTable where nodetypename=#{nodeTypeName}
     </delete>
+
+    <select id="getNodeAttributebyNodeTypeName" resultType="String" parameterType="String">
+        select nodeTypeAttribute from NodeTypeTable where nodeTypeName = #{nodeTypeName}
+    </select>
 
 
 </mapper>
