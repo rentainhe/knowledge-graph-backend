@@ -6,5 +6,12 @@
         insert into NodeEntityTable (nodeEntityKey, nodeEntityTypeName, nodeEntityAttribute) values (#{nodeEntityKey}, #{nodeEntityTypeName}, #{nodeEntityAttribute})
     </insert>
 
+    <select id="initGraph" resultType="xmu.vis.domain.NodeEntityTable">
+        select * from NodeEntityTable LIMIT 0, 5;
+    </select>
 
+    <select id="getNodeEntityByNodeKey" parameterType="xmu.vis.domain.NodeEntityTable"
+            resultType="xmu.vis.domain.NodeEntityTable">
+        select * from NodeEntityTable where nodeEntityKey=#{nodeEntityKey};
+    </select>
 </mapper>
