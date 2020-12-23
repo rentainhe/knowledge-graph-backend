@@ -21,6 +21,9 @@ public class VisService {
 
     @Autowired
     private RelationTupleTableMapper relationTupleTableMapper;
+
+    @Autowired
+    private RelationTypeTableMapper relationTypeTableMapper;
     //根据传入的TableKeywords的hashmaps解析成str   前端----->数据库(done)
     /*
         hashmaps:[{"value":"xxx"},{"value":"xxx"},{"value":"xxx"},{"value":"xxx"},...]
@@ -88,5 +91,8 @@ public class VisService {
 
     public Integer addNewNodeEntity(NodeEntityTable newNodeEntity){ return nodeEntityTableMapper.addNewNodeEntity(newNodeEntity); }
 
+    public Integer addNewRelationType(RelationTypeTable newRelationType){
+        return relationTypeTableMapper.addNewRelationType(newRelationType);
+    }
     public Integer addNewRelationTuple(RelationTupleTable relationTupleTable){ return relationTupleTableMapper.addNewRelationTuple(relationTupleTable);}
 }

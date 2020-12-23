@@ -57,6 +57,23 @@ public class VisController {
         }
     }
 
+    // 增加一系列关系类型
+    @PostMapping("/addListNewRelationType")
+    public Object addListNewRelaitonType(@RequestBody List<TableKeywords> listofNewRelaitonType){
+        for (TableKeywords aTableKeywords : listofNewRelaitonType){
+            String attribute_string = visService.transformTableKeywordsHashMapintoStr(aTableKeywords.getKeyWords());
+            if (attribute_string.equals("Empty HashMap")){
+                return ResponseUtil.fail();
+            }
+
+            RelationTypeTable relationTypeTable = new RelationTypeTable();
+            relationTypeTable.setRelationTypeName(aTableKeywords.getTableName());
+            relationTypeTable.setRelationTypeAttribute(attribute_string);
+            visService.addNewRelationType(relationTypeTable);
+        }
+        return ResponseUtil.ok();
+    }
+
     // 批量上传实体数据
     @PostMapping("/addListNewNodeEntity")
     public Object addListNewNodeEntity(@RequestBody List<RelationTupleEntity> listofNewNodeEntity){
