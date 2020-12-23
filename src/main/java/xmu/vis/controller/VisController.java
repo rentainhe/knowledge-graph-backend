@@ -13,6 +13,7 @@ import xmu.vis.controller.*;
 import xmu.vis.utils.ResponseUtil;
 
 import javax.management.relation.Relation;
+import javax.xml.soap.Node;
 import java.util.*;
 
 
@@ -76,46 +77,47 @@ public class VisController {
         return ResponseUtil.ok();
     }
 
-    // 批量上传实体数据
-    @PostMapping("/addListNewNodeEntity")
-    public Object addListNewNodeEntity(@RequestBody List<RelationTupleEntity> listofNewNodeEntity){
-        HashSet<NodeEntityTable> nodeEntitySet = new HashSet<>();
-        for (RelationTupleEntity aRelationTupleEntity: listofNewNodeEntity){
-            NodeEntityTable aNewNodeEntity_father = new NodeEntityTable();
-
-            aNewNodeEntity_father.setNodeEntityTypeName(aRelationTupleEntity.getFatherNodeTypeName());
-            aNewNodeEntity_father.setNodeEntityAttribute(aRelationTupleEntity.getFatherNodeEntityAttribute());
-            String father_key = visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getFatherNodeEntityAttribute(), aRelationTupleEntity.getFatherNodeTypeName());
-            aNewNodeEntity_father.setNodeEntityKey(father_key);
-            nodeEntitySet.add(aNewNodeEntity_father);
-
-            NodeEntityTable aNewNodeEntity_child = new NodeEntityTable();
-            aNewNodeEntity_child.setNodeEntityTypeName(aRelationTupleEntity.getChildNodeTypeName());
-            aNewNodeEntity_child.setNodeEntityAttribute(aRelationTupleEntity.getChildNodeEntityAttribute());
-            String child_key = visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getChildNodeEntityAttribute(), aRelationTupleEntity.getChildNodeTypeName());
-            aNewNodeEntity_child.setNodeEntityKey(child_key);
-            nodeEntitySet.add(aNewNodeEntity_child);
-
-            // 添加关系
-            if (aRelationTupleEntity.getRelationTypeName().equals("")){
-                continue;
-            }
-            else{
-                RelationTupleTable relationTupleTable = new RelationTupleTable();
-                relationTupleTable.setFatherNodeKey(visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getFatherNodeEntityAttribute(), aRelationTupleEntity.getFatherNodeTypeName()));
-                relationTupleTable.setChildNodeKey(visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getChildNodeEntityAttribute(), aRelationTupleEntity.getChildNodeTypeName()));
-                relationTupleTable.setRelationTypeName(aRelationTupleEntity.getRelationTypeName());
-                relationTupleTable.setRelationAttribute(aRelationTupleEntity.getRelationTypeAttribute());
-                visService.addNewRelationTuple(relationTupleTable);
-            }
-        }
-
-        // 添加到nodeEntityTable
-        for (NodeEntityTable nodeEntityTable: nodeEntitySet) {
-            visService.addNewNodeEntity(nodeEntityTable);
-        }
-        return ResponseUtil.ok();
-    }
+//    // 批量上传实体数据
+//    @PostMapping("/addListNewNodeEntity")
+//    public Object addListNewNodeEntity(@RequestBody List<RelationTupleEntity> listofNewNodeEntity){
+//        HashSet<NodeEntityTable> nodeEntitySet = new HashSet<>();
+//        for (RelationTupleEntity aRelationTupleEntity: listofNewNodeEntity){
+//            NodeEntityTable aNewNodeEntity_father = new NodeEntityTable();
+//
+//            aNewNodeEntity_father.setNodeEntityTypeName(aRelationTupleEntity.fathernode.getTableName());
+//            List<HashMap<String, String>> attribute_string = aRelationTupleEntity.fathernode.getkeyWords();
+//            aNewNodeEntity_father.setNodeEntityAttribute(aRelationTupleEntity.getFatherNodeEntityAttribute());
+//            String father_key = visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getFatherNodeEntityAttribute(), aRelationTupleEntity.getFatherNodeTypeName());
+//            aNewNodeEntity_father.setNodeEntityKey(father_key);
+//            nodeEntitySet.add(aNewNodeEntity_father);
+//
+////            NodeEntityTable aNewNodeEntity_child = new NodeEntityTable();
+////            aNewNodeEntity_child.setNodeEntityTypeName(aRelationTupleEntity.getChildNodeTypeName());
+////            aNewNodeEntity_child.setNodeEntityAttribute(aRelationTupleEntity.getChildNodeEntityAttribute());
+////            String child_key = visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getChildNodeEntityAttribute(), aRelationTupleEntity.getChildNodeTypeName());
+////            aNewNodeEntity_child.setNodeEntityKey(child_key);
+////            nodeEntitySet.add(aNewNodeEntity_child);
+//
+//            // 添加关系
+//            if (aRelationTupleEntity.getRelationTypeName().equals("")){
+//                continue;
+//            }
+//            else{
+//                RelationTupleTable relationTupleTable = new RelationTupleTable();
+//                relationTupleTable.setFatherNodeKey(visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getFatherNodeEntityAttribute(), aRelationTupleEntity.getFatherNodeTypeName()));
+//                relationTupleTable.setChildNodeKey(visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getChildNodeEntityAttribute(), aRelationTupleEntity.getChildNodeTypeName()));
+//                relationTupleTable.setRelationTypeName(aRelationTupleEntity.getRelationTypeName());
+//                relationTupleTable.setRelationAttribute(aRelationTupleEntity.getRelationTypeAttribute());
+//                visService.addNewRelationTuple(relationTupleTable);
+//            }
+//        }
+//
+//        // 添加到nodeEntityTable
+//        for (NodeEntityTable nodeEntityTable: nodeEntitySet) {
+//            visService.addNewNodeEntity(nodeEntityTable);
+//        }
+//        return ResponseUtil.ok();
+//    }
 
 
     // 删除节点类型
@@ -146,22 +148,28 @@ public class VisController {
     @GetMapping("initGraphNodesInfo")
     public Object initGraphNodesInfo(){
         List<NodeEntityTable> top_5_node = visService.initGraph(); // 获取前五个node节点
-        HashSet<NodeEntityTable> nodeSet = new HashSet<>();
+        HashSet<TableKeywords> nodeSet = new HashSet<>();
         for (NodeEntityTable node: top_5_node){
             List<RelationTupleTable> levelOneFatherRelationTuple = visService.getRelationTupleFromFatherNodeKey(node.getNodeEntityKey());
+            List<NodeEntityTable> childNodeEntityList = new ArrayList<>();
             for(RelationTupleTable relationTupleTable: levelOneFatherRelationTuple) {
-                nodeSet.add(visService.getNodeEntityByNodeKey(relationTupleTable.getChildNodeKey()));
-                //根据key值查nodeEntityTable
+                NodeEntityTable childNode = visService.getNodeEntityByNodeKey(relationTupleTable.getChildNodeKey());
+                childNodeEntityList.add(childNode);
             }
+            List<TableKeywords> result1 = visService.transformNodeEntityTableintoTableKeywords(childNodeEntityList);
+            nodeSet.addAll(result1);
+
             List<RelationTupleTable> levelOneChildRelationTuple = visService.getRelationTupleFromChildNodeKey(node.getNodeEntityKey());
-            for(RelationTupleTable relationTupleTable: levelOneChildRelationTuple) {
-                nodeSet.add(visService.getNodeEntityByNodeKey(relationTupleTable.getFatherNodeKey()));
-                //根据key值查nodeEntityTable
+            List<NodeEntityTable> fatherNodeEntityList = new ArrayList<>();
+            for(RelationTupleTable relationTupleTable: levelOneFatherRelationTuple) {
+                NodeEntityTable fatherNode = visService.getNodeEntityByNodeKey(relationTupleTable.getFatherNodeKey());
+                fatherNodeEntityList.add(fatherNode);
             }
+            List<TableKeywords> result2 = visService.transformNodeEntityTableintoTableKeywords(fatherNodeEntityList);
+            nodeSet.addAll(result2);
         }
         return ResponseUtil.ok(nodeSet);
     }
-
 
     // 返回init 关系三元组
     @GetMapping("initGraphRelationTuple")

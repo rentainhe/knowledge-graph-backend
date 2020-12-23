@@ -9,5 +9,4 @@ import java.util.List;
 public class TableKeywords {
     public String tableName;
     public List<HashMap<String, String>> keyWords;
-
 }
