@@ -14,6 +14,7 @@ import xmu.vis.utils.ResponseUtil;
 
 import javax.management.relation.Relation;
 import javax.xml.soap.Node;
+import java.lang.reflect.Array;
 import java.util.*;
 
 
@@ -77,47 +78,43 @@ public class VisController {
         return ResponseUtil.ok();
     }
 
-//    // 批量上传实体数据
-//    @PostMapping("/addListNewNodeEntity")
-//    public Object addListNewNodeEntity(@RequestBody List<RelationTupleEntity> listofNewNodeEntity){
-//        HashSet<NodeEntityTable> nodeEntitySet = new HashSet<>();
-//        for (RelationTupleEntity aRelationTupleEntity: listofNewNodeEntity){
-//            NodeEntityTable aNewNodeEntity_father = new NodeEntityTable();
-//
-//            aNewNodeEntity_father.setNodeEntityTypeName(aRelationTupleEntity.fathernode.getTableName());
-//            List<HashMap<String, String>> attribute_string = aRelationTupleEntity.fathernode.getkeyWords();
-//            aNewNodeEntity_father.setNodeEntityAttribute(aRelationTupleEntity.getFatherNodeEntityAttribute());
-//            String father_key = visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getFatherNodeEntityAttribute(), aRelationTupleEntity.getFatherNodeTypeName());
-//            aNewNodeEntity_father.setNodeEntityKey(father_key);
-//            nodeEntitySet.add(aNewNodeEntity_father);
-//
-////            NodeEntityTable aNewNodeEntity_child = new NodeEntityTable();
-////            aNewNodeEntity_child.setNodeEntityTypeName(aRelationTupleEntity.getChildNodeTypeName());
-////            aNewNodeEntity_child.setNodeEntityAttribute(aRelationTupleEntity.getChildNodeEntityAttribute());
-////            String child_key = visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getChildNodeEntityAttribute(), aRelationTupleEntity.getChildNodeTypeName());
-////            aNewNodeEntity_child.setNodeEntityKey(child_key);
-////            nodeEntitySet.add(aNewNodeEntity_child);
-//
-//            // 添加关系
-//            if (aRelationTupleEntity.getRelationTypeName().equals("")){
-//                continue;
-//            }
-//            else{
-//                RelationTupleTable relationTupleTable = new RelationTupleTable();
-//                relationTupleTable.setFatherNodeKey(visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getFatherNodeEntityAttribute(), aRelationTupleEntity.getFatherNodeTypeName()));
-//                relationTupleTable.setChildNodeKey(visService.getKeyAttributeValueofNodeEntity(aRelationTupleEntity.getChildNodeEntityAttribute(), aRelationTupleEntity.getChildNodeTypeName()));
-//                relationTupleTable.setRelationTypeName(aRelationTupleEntity.getRelationTypeName());
-//                relationTupleTable.setRelationAttribute(aRelationTupleEntity.getRelationTypeAttribute());
-//                visService.addNewRelationTuple(relationTupleTable);
-//            }
-//        }
-//
-//        // 添加到nodeEntityTable
-//        for (NodeEntityTable nodeEntityTable: nodeEntitySet) {
-//            visService.addNewNodeEntity(nodeEntityTable);
-//        }
-//        return ResponseUtil.ok();
-//    }
+    // 批量上传实体数据
+    @PostMapping("/addListNewNodeEntity")
+    public Object addListNewNodeEntity(@RequestBody List<RelationTupleEntity> listofNewNodeEntity){
+        HashSet<TableKeywords> tableEntitySet = new HashSet<>();
+        for (RelationTupleEntity aRelationTupleEntity: listofNewNodeEntity) {
+            if (aRelationTupleEntity.relation.getTableName() == null || aRelationTupleEntity.relation == null){
+                tableEntitySet.add(aRelationTupleEntity.childnode);
+                tableEntitySet.add(aRelationTupleEntity.fathernode);
+            }
+            else {
+                tableEntitySet.add(aRelationTupleEntity.childnode);
+                tableEntitySet.add(aRelationTupleEntity.fathernode);
+                //上传三元组
+                RelationTupleTable relationTupleTable = new RelationTupleTable();
+                relationTupleTable.setRelationTypeName(aRelationTupleEntity.relation.getTableName());
+                relationTupleTable.setRelationAttribute(visService.transformTableKeywordsEntityHashMapintoStr(aRelationTupleEntity.getRelation().getKeyWords()));
+                String fatherNodeKey = visService.getKeyAttributeValueofNodeEntity(visService.transformTableKeywordsEntityHashMapintoStr(aRelationTupleEntity.fathernode.getKeyWords()), aRelationTupleEntity.fathernode.tableName);
+                relationTupleTable.setFatherNodeKey(fatherNodeKey);
+                String childNodeKey = visService.getKeyAttributeValueofNodeEntity(visService.transformTableKeywordsEntityHashMapintoStr(aRelationTupleEntity.childnode.getKeyWords()), aRelationTupleEntity.childnode.tableName);
+                relationTupleTable.setChildNodeKey(childNodeKey);
+                visService.addNewRelationTuple(relationTupleTable);
+            }
+        }
+
+        // 上传节点
+        for (TableKeywords aTableKeywordsNode: tableEntitySet){
+            NodeEntityTable aNodeEntityTable = new NodeEntityTable();
+            aNodeEntityTable.setNodeEntityTypeName(aTableKeywordsNode.getTableName());
+            String nodeAttributeString = visService.transformTableKeywordsEntityHashMapintoStr(aTableKeywordsNode.getKeyWords());
+            aNodeEntityTable.setNodeEntityAttribute(nodeAttributeString);
+            String nodeKey = visService.getKeyAttributeValueofNodeEntity(nodeAttributeString, aTableKeywordsNode.getTableName());
+            aNodeEntityTable.setNodeEntityKey(nodeKey);
+            visService.addNewNodeEntity(aNodeEntityTable);
+        }
+
+        return ResponseUtil.ok();
+    }
 
 
     // 删除节点类型

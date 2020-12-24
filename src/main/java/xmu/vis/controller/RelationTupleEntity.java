@@ -7,7 +7,6 @@ public class RelationTupleEntity {
     public TableKeywords fathernode;
     public TableKeywords childnode;
 
-    public String relationTypeName;
-    public String relationTypeAttribute;
+    public TableKeywords relation;
 
 }

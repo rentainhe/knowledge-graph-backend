@@ -25,6 +25,9 @@ public class VisService {
     @Autowired
     private RelationTypeTableMapper relationTypeTableMapper;
 
+
+
+
     //根据传入的TableKeywords的hashmaps解析成str   前端----->数据库(done)
     /*
         hashmaps:[{"value":"xxx"},{"value":"xxx"},{"value":"xxx"},{"value":"xxx"},...]
@@ -41,8 +44,29 @@ public class VisService {
             }
     }
 
+    /* --------
 
-
+    -------*/
+    public String transformTableKeywordsEntityHashMapintoStr(List<HashMap<String, String>> attribute_hashmaps){
+        if(attribute_hashmaps.isEmpty()){ return "Empty HashMap"; }
+        else {
+            StringBuilder attribute_string = new StringBuilder("");
+            for (HashMap<String, String> attribute_hashmap: attribute_hashmaps) {
+                for (Map.Entry<String, String> stringStringEntry : attribute_hashmap.entrySet()) {
+                    Object key = ((Map.Entry) stringStringEntry).getKey();
+                    Object value = ((Map.Entry) stringStringEntry).getValue();
+                    attribute_string.append(key);
+                    attribute_string.append(":");
+                    attribute_string.append(value);
+                    attribute_string.append(",");
+                }
+            }
+            return attribute_string.substring(0, attribute_string.length()-1);
+        }
+    }
+    /* -----------------
+            Node形式转TableKeywords
+    ---------------*/
     //将NodeTypeTable以TableKeywords形式返回前端    数据库  -----> 前端(done)
     public List<TableKeywords> transformNodeTypeTableintoTableKeywords(List<NodeTypeTable> allNodeTypeTable){
         List<TableKeywords> result = new ArrayList<>();
@@ -82,6 +106,14 @@ public class VisService {
         }
         return result;
     }
+
+
+
+
+
+    /* --------
+
+    -------*/
 
     // 给 nodeTypeName 给出这个类型 Key
     public String getKeyofNodeType(String nodeTypeName){
