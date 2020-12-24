@@ -181,7 +181,33 @@ public class VisController {
         return ResponseUtil.ok(result);
     }
 
+    // 给定根节点TableKeywords结构 返回一阶段节点
+    @PostMapping("/searchNodeEntityOneStageNode")
+    public Object searchNodeEntityOneStageNode(@RequestBody TableKeywords rootTableKeywords){
+        NodeEntityTable rootNodeEntity = new NodeEntityTable();
+        // 节点类型
+        rootNodeEntity.setNodeEntityTypeName(rootTableKeywords.getTableName());
+        // 节点主键
+        String nodeEntityKey = visService.getKeyAttributeValueofNodeEntity(visService.transformTableKeywordsEntityHashMapintoStr(rootTableKeywords.getKeyWords()), rootTableKeywords.getTableName());
+        rootNodeEntity.setNodeEntityKey(nodeEntityKey);
+        // 节点属性
+        String nodeAttributeString = visService.transformTableKeywordsEntityHashMapintoStr(rootTableKeywords.getKeyWords());
+        rootNodeEntity.setNodeEntityAttribute(nodeAttributeString);
 
+        List<NodeEntityTable> resultNodeEntity = visService.getOneStageNodeEntitybyRootNodeEntity(rootNodeEntity);
+        List<TableKeywords> resultTableKeywords = visService.transformNodeEntityTableintoTableKeywords(resultNodeEntity);
+        return ResponseUtil.ok(resultTableKeywords);
+    }
+
+    // 给定根节点TableKeywords结构 返回一阶段关系(返回的格式是数据库后端的存储格式)
+    @PostMapping("/searchNodeEntityOneStageRelation")
+    public Object searchNodeEntityOneStageRelation(@RequestBody TableKeywords rootTableKeywords){
+        NodeEntityTable rootNodeEntity = visService.fromTableKeystoNodeEntity(rootTableKeywords);
+        List<RelationTupleTable> relationTupleTables = new ArrayList<>();
+        relationTupleTables.addAll(visService.getRelationTupleFromFatherNodeKey(rootNodeEntity.getNodeEntityKey()));
+        relationTupleTables.addAll(visService.getRelationTupleFromChildNodeKey(rootNodeEntity.getNodeEntityKey()));
+        return ResponseUtil.ok(relationTupleTables);
+    }
 
 
 

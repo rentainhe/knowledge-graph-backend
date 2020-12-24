@@ -1,5 +1,7 @@
 package xmu.vis.service;
 
+import javafx.scene.Node;
+import javafx.scene.control.Tab;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import xmu.vis.controller.RelationTupleEntity;
@@ -8,6 +10,7 @@ import xmu.vis.domain.*;
 import xmu.vis.mapper.*;
 
 
+import javax.management.relation.Relation;
 import javax.validation.constraints.Max;
 import java.util.*;
 
@@ -44,9 +47,6 @@ public class VisService {
             }
     }
 
-    /* --------
-
-    -------*/
     public String transformTableKeywordsEntityHashMapintoStr(List<HashMap<String, String>> attribute_hashmaps){
         if(attribute_hashmaps.isEmpty()){ return "Empty HashMap"; }
         else {
@@ -64,10 +64,8 @@ public class VisService {
             return attribute_string.substring(0, attribute_string.length()-1);
         }
     }
-    /* -----------------
-            Node形式转TableKeywords
-    ---------------*/
-    //将NodeTypeTable以TableKeywords形式返回前端    数据库  -----> 前端(done)
+
+    // 给NodeTypeTable转换成TableKeywords
     public List<TableKeywords> transformNodeTypeTableintoTableKeywords(List<NodeTypeTable> allNodeTypeTable){
         List<TableKeywords> result = new ArrayList<>();
         for (NodeTypeTable aNodeTypeTable: allNodeTypeTable){
@@ -107,6 +105,20 @@ public class VisService {
         return result;
     }
 
+    //给Tablekeys实体 转换成NodeEntity
+    public NodeEntityTable fromTableKeystoNodeEntity(TableKeywords tableKeywords){
+        NodeEntityTable result = new NodeEntityTable();
+
+        String typeName = tableKeywords.getTableName();
+        List<HashMap<String, String>> attribute_hashmap = tableKeywords.getKeyWords();
+        String attribute_string = transformTableKeywordsEntityHashMapintoStr(attribute_hashmap);
+        String key = getKeyAttributeValueofNodeEntity(attribute_string, typeName);
+
+        result.setNodeEntityKey(key);
+        result.setNodeEntityTypeName(typeName);
+        result.setNodeEntityAttribute(attribute_string);
+        return result;
+    }
 
 
 
@@ -147,9 +159,27 @@ public class VisService {
         return relationTupleTableMapper.getRelationTupleFromFatherNodeKey(fatherNodeKey);
     }
 
+    // 通过父节点名字查询到所有关系
     public List<RelationTupleTable> getRelationTupleFromChildNodeKey(String childNodeKey){
         return relationTupleTableMapper.getRelationTupleFromChildNodeKey(childNodeKey);
     }
+
+    // 给定节点,返回一阶关系节点
+    public List<NodeEntityTable> getOneStageNodeEntitybyRootNodeEntity(NodeEntityTable rootNodeEntity){
+        HashSet<NodeEntityTable> nodeEntitySet = new HashSet<>();
+        List<RelationTupleTable> aboutFatherRelationTuple = getRelationTupleFromFatherNodeKey(rootNodeEntity.getNodeEntityKey());
+        for (RelationTupleTable relationTupleTable: aboutFatherRelationTuple){
+            NodeEntityTable childNode = getNodeEntityByNodeKey(relationTupleTable.getChildNodeKey());
+            nodeEntitySet.add(childNode);
+        }
+        List<RelationTupleTable> aboutChildRelationTuple = getRelationTupleFromChildNodeKey(rootNodeEntity.getNodeEntityKey());
+        for (RelationTupleTable relationTupleTable: aboutChildRelationTuple){
+            NodeEntityTable fatherNode = getNodeEntityByNodeKey(relationTupleTable.getFatherNodeKey());
+            nodeEntitySet.add(fatherNode);
+        }
+        return new ArrayList<>(nodeEntitySet);
+    }
+
 
     public NodeEntityTable getNodeEntityByNodeKey(String nodeEntityKey){
         return nodeEntityTableMapper.getNodeEntityByNodeKey(nodeEntityKey);
