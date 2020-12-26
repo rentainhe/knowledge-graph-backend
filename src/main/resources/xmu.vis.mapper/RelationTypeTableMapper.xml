@@ -6,5 +6,9 @@
         insert into RelationTypeTable (relationTypeName, relationTypeAttribute) values (#{relationTypeName}, #{relationTypeAttribute})
     </insert>
 
+    <select id="getAllRelationTypeNameAndAttribute" resultType="xmu.vis.domain.RelationTypeTable">
+        select * from RelationTypeTable
+    </select>
+
 
 </mapper>

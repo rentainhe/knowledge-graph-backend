@@ -32,6 +32,9 @@ public class VisController {
     @Autowired
     private NodeTypeTableMapper nodeTypeTableMapper;
 
+    @Autowired
+    private RelationTypeTableMapper relationTypeTableMapper;
+
     // 增加一系列节点类型(done)
     @PostMapping("/addListNewNodeType")
     public Object addListNewNodeType(@RequestBody List<TableKeywords> listofNewNodeType){
@@ -49,10 +52,22 @@ public class VisController {
         return ResponseUtil.ok();
     }
 
-    // 返回所有数据库以及对应字段(done)
+    // 返回所有节点类型以及对应字段(done)
     @GetMapping("/getAllDataBaseAndAttribute")
     public Object getAllDataBaseAndAttribute(){
         List<TableKeywords> result = visService.transformNodeTypeTableintoTableKeywords(nodeTypeTableMapper.getAllNodeTypeNameAndAttribute());
+        if (result.size() == 0){
+            return ResponseUtil.fail(-1,"null database");
+        }
+        else {
+            return ResponseUtil.ok(result);
+        }
+    }
+
+    // 返回所有关系类型以及对应字段
+    @GetMapping("/getAllRelationTypeAndAttribute")
+    public Object getAllRelationTypeAndAttribute(){
+        List<TableKeywords> result = visService.transformRelationTypeTableintoTableKeywords(relationTypeTableMapper.getAllRelationTypeNameAndAttribute());
         if (result.size() == 0){
             return ResponseUtil.fail(-1,"null database");
         }
@@ -65,15 +80,23 @@ public class VisController {
     @PostMapping("/addListNewRelationType")
     public Object addListNewRelaitonType(@RequestBody List<TableKeywords> listofNewRelaitonType){
         for (TableKeywords aTableKeywords : listofNewRelaitonType){
-            String attribute_string = visService.transformTableKeywordsHashMapintoStr(aTableKeywords.getKeyWords());
-            if (attribute_string.equals("Empty HashMap")){
-                return ResponseUtil.fail();
+            if (aTableKeywords.getKeyWords() == null || aTableKeywords.getKeyWords().size() == 0){
+                RelationTypeTable relationTypeTable = new RelationTypeTable();
+                relationTypeTable.setRelationTypeName(aTableKeywords.getTableName());
+                relationTypeTable.setRelationTypeAttribute("");
+                visService.addNewRelationType(relationTypeTable);
             }
+            else {
+                String attribute_string = visService.transformTableKeywordsHashMapintoStr(aTableKeywords.getKeyWords());
+                if (attribute_string.equals("Empty HashMap")) {
+                    return ResponseUtil.fail();
+                }
 
-            RelationTypeTable relationTypeTable = new RelationTypeTable();
-            relationTypeTable.setRelationTypeName(aTableKeywords.getTableName());
-            relationTypeTable.setRelationTypeAttribute(attribute_string);
-            visService.addNewRelationType(relationTypeTable);
+                RelationTypeTable relationTypeTable = new RelationTypeTable();
+                relationTypeTable.setRelationTypeName(aTableKeywords.getTableName());
+                relationTypeTable.setRelationTypeAttribute(attribute_string);
+                visService.addNewRelationType(relationTypeTable);
+            }
         }
         return ResponseUtil.ok();
     }
@@ -83,9 +106,19 @@ public class VisController {
     public Object addListNewNodeEntity(@RequestBody List<RelationTupleEntity> listofNewNodeEntity){
         HashSet<TableKeywords> tableEntitySet = new HashSet<>();
         for (RelationTupleEntity aRelationTupleEntity: listofNewNodeEntity) {
-            if (aRelationTupleEntity.relation.getTableName() == null || aRelationTupleEntity.relation == null){
-                tableEntitySet.add(aRelationTupleEntity.childnode);
-                tableEntitySet.add(aRelationTupleEntity.fathernode);
+            //关系为空 只添加节点
+            if (aRelationTupleEntity.relation == null){
+                //关系为空 只有”父“节点或”子“节点
+                if (aRelationTupleEntity.childnode == null ){
+                    tableEntitySet.add(aRelationTupleEntity.fathernode);
+                }
+                else if (aRelationTupleEntity.fathernode == null){
+                    tableEntitySet.add(aRelationTupleEntity.childnode);
+                }
+                else {
+                    tableEntitySet.add(aRelationTupleEntity.childnode);
+                    tableEntitySet.add(aRelationTupleEntity.fathernode);
+                }
             }
             else {
                 tableEntitySet.add(aRelationTupleEntity.childnode);

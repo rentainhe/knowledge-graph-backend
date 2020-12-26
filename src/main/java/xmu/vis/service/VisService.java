@@ -85,6 +85,30 @@ public class VisService {
         return result;
     }
 
+    // 给RelationTypeTable转换成TableKeywords
+    public List<TableKeywords> transformRelationTypeTableintoTableKeywords(List<RelationTypeTable> allRelationTypeTable){
+        List<TableKeywords> result = new ArrayList<>();
+        for(RelationTypeTable relationTypeTable: allRelationTypeTable){
+            TableKeywords aTableKeywords = new TableKeywords();
+            aTableKeywords.setTableName(relationTypeTable.getRelationTypeName());
+            if (relationTypeTable.getRelationTypeAttribute().length() == 0 || relationTypeTable.getRelationTypeAttribute() == null){
+                aTableKeywords.setKeyWords(null);
+            }
+            else{
+                List<HashMap<String, String>> aListRelationTypeAttribute = new ArrayList<>();
+                String[] array = relationTypeTable.getRelationTypeAttribute().split(",");
+                for (String attr : array) {
+                    HashMap<String, String> aAttribute = new HashMap<String, String>();
+                    aAttribute.put("value", attr);
+                    aListRelationTypeAttribute.add(aAttribute);
+                    aTableKeywords.setKeyWords(aListRelationTypeAttribute);
+                }
+            }
+            result.add(aTableKeywords);
+        }
+        return result;
+    }
+
     public List<TableKeywords> transformNodeEntityTableintoTableKeywords(List<NodeEntityTable> allNodeEntityTable){
         List<TableKeywords> result = new ArrayList<>();
         for (NodeEntityTable aNodeEntityTable: allNodeEntityTable){

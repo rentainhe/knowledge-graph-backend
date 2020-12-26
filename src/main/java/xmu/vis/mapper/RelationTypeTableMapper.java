@@ -14,4 +14,5 @@ import java.util.List;
 @Component
 public interface RelationTypeTableMapper {
     public Integer addNewRelationType(RelationTypeTable relaitonType);
+    public List<RelationTypeTable> getAllRelationTypeNameAndAttribute();
 }
