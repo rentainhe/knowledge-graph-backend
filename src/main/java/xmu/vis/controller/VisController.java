@@ -242,7 +242,11 @@ public class VisController {
         return ResponseUtil.ok(relationTupleTables);
     }
 
-
-
-
+    // 给定根结点TableKeywords结构，返回一阶关系
+    @GetMapping("/getOneStageNodeRelationTupleTable")
+    public Object getOneStageNodeRelationTupleTable(@RequestBody TableKeywords rootTableKeywords){
+        NodeEntityTable rootNodeEntity = visService.fromTableKeystoNodeEntity(rootTableKeywords);
+        List<TableKeywords> result = visService.getOneStageNodeRelationTupleTable(rootNodeEntity);
+        return ResponseUtil.ok(result);
+    }
 }
