@@ -268,7 +268,7 @@ public class VisService {
             List<RelationTupleTable> relations = getAlloneStageRelationTuple(nodeId);
             result.addAll(relations);
         }
-        result.removeIf(relationTupleTable -> !oneStageNodeId.contains(relationTupleTable.getFatherId()) || !oneStageNodeId.contains(relationTupleTable.getChildId()));
+        result.removeIf(relationTupleTable -> !oneStageNodeId.contains(relationTupleTable.getFatherNodeKey()) || !oneStageNodeId.contains(relationTupleTable.getChildNodeKey()));
         List<RelationTupleTable> a = new ArrayList<>(result);
         oneStageRelationTupleTable.addAll(a);
 
