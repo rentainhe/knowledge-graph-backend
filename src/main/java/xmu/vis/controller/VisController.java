@@ -35,6 +35,21 @@ public class VisController {
     @Autowired
     private RelationTypeTableMapper relationTypeTableMapper;
 
+    // 给主键值 返回所有符合的节点
+    @GetMapping("/getNodeByKeyValue/{value}")
+    public Object getNodeByKeyValue(@PathVariable String value){
+        NodeEntityTable result = visService.getNodeEntityByNodeKey(value);
+        if (result == null){
+            return ResponseUtil.fail();
+        }
+        else{
+            List<NodeEntityTable> listNode = new ArrayList<>();
+            listNode.add(result);
+            List<TableKeywords> listTable = visService.transformNodeEntityTableintoTableKeywords(listNode);
+            return ResponseUtil.ok(listTable.get(0));
+        }
+    }
+
     // 增加一系列节点类型(done)
     @PostMapping("/addListNewNodeType")
     public Object addListNewNodeType(@RequestBody List<TableKeywords> listofNewNodeType){
