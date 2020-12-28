@@ -6,7 +6,5 @@ import lombok.Data;
 public class RelationTupleEntity {
     public TableKeywords fathernode;
     public TableKeywords childnode;
-
     public TableKeywords relation;
-
 }
