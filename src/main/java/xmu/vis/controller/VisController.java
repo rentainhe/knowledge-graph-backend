@@ -261,7 +261,8 @@ public class VisController {
     @GetMapping("/getOneStageNodeRelationTupleTable")
     public Object getOneStageNodeRelationTupleTable(@RequestBody TableKeywords rootTableKeywords){
         NodeEntityTable rootNodeEntity = visService.fromTableKeystoNodeEntity(rootTableKeywords);
-        List<TableKeywords> result = visService.getOneStageNodeRelationTupleTable(rootNodeEntity);
-        return ResponseUtil.ok(result);
+       List<RelationTupleTable> result = visService.getOneStageNodeRelationTupleTable(rootNodeEntity);
+       return ResponseUtil.ok(result);
     }
+
 }

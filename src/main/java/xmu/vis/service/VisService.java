@@ -181,8 +181,6 @@ public class VisService {
     }
 
 
-
-
     /* --------
 
     -------*/
@@ -272,7 +270,8 @@ public class VisService {
         List<RelationTupleTable> a = new ArrayList<>(result);
         oneStageRelationTupleTable.addAll(a);
 
-        return transformRelationTupleTableintoTableKeywords(oneStageRelationTupleTable);
+        // return transformRelationTupleTableintoTableKeywords(oneStageRelationTupleTable);
+        return oneStageRelationTupleTable;
 
     }
 
