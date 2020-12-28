@@ -128,42 +128,6 @@ public class VisService {
         return result;
     }
 
-    // 给RelationTupleTable转换成TableKeywords
-    public List<TableKeywords> transformRelationTupleTableintoTableKeywords(List<RelationTupleTable> allRelationTupleTable) {
-        List<TableKeywords> result = new ArrayList<>();
-
-        for (RelationTupleTable relationTupleTable : allRelationTupleTable) {
-            TableKeywords tableKeywords = new TableKeywords();
-            tableKeywords.setTableName(relationTupleTable.getRelationKey());
-            List<HashMap<String, String>> listRelationTupleTableOthers = new ArrayList<>();
-
-            HashMap<String, String> relationTypeName = new HashMap<String, String>();
-            relationTypeName.put("relationTypeName", relationTupleTable.getRelationTypeName());
-            listRelationTupleTableOthers.add(relationTypeName);
-            tableKeywords.setKeyWords(listRelationTupleTableOthers);
-
-            HashMap<String, String> fatherNodeKey = new HashMap<String, String>();
-            fatherNodeKey.put("fatherNodeKey", relationTupleTable.getFatherNodeKey());
-            listRelationTupleTableOthers.add(fatherNodeKey);
-            tableKeywords.setKeyWords(listRelationTupleTableOthers);
-
-            HashMap<String, String> childNodeKey = new HashMap<String, String>();
-            childNodeKey.put("childNodeKey", relationTupleTable.getChildNodeKey());
-            listRelationTupleTableOthers.add(childNodeKey);
-            tableKeywords.setKeyWords(listRelationTupleTableOthers);
-
-            String[] array = relationTupleTable.getRelationAttribute().split(",");
-            for (String attr : array) {
-                HashMap<String, String> attribute = new HashMap<String, String>();
-                attribute.put("value", attr);
-                listRelationTupleTableOthers.add(attribute);
-                tableKeywords.setKeyWords(listRelationTupleTableOthers);
-            }
-            result.add(tableKeywords);
-        }
-
-        return result;
-    }
 
     //给Tablekeys实体 转换成NodeEntity
     public NodeEntityTable fromTableKeystoNodeEntity(TableKeywords tableKeywords) {
@@ -241,39 +205,7 @@ public class VisService {
         return new ArrayList<>(nodeEntitySet);
     }
 
-    //根据节点ID 返回该节点所有一阶关系
-    public List<RelationTupleTable> getAlloneStageRelationTuple(String nodeId) {
-        List<RelationTupleTable> oneStageRelationTuple = getRelationTupleFromFatherNodeKey(nodeId);
-        oneStageRelationTuple.addAll(getRelationTupleFromChildNodeKey(nodeId));
-        return oneStageRelationTuple;
-    }
 
-    public List<TableKeywords> getOneStageNodeRelationTupleTable(NodeEntityTable rootNodeEntity) {
-        List<RelationTupleTable> oneStageRelationTupleTable = getRelationTupleFromFatherNodeKey(rootNodeEntity.getNodeEntityKey());
-        oneStageRelationTupleTable.addAll(getRelationTupleFromChildNodeKey(rootNodeEntity.getNodeEntityKey()));
-
-        List<String> oneStageNodeId = new ArrayList<>();
-        for (RelationTupleTable relationTupleTable : oneStageRelationTupleTable) {
-            if (relationTupleTable.getFatherNodeKey().equals(rootNodeEntity.getNodeEntityKey())) {
-                oneStageNodeId.add(relationTupleTable.getChildNodeKey());
-            } else {
-                oneStageNodeId.add(relationTupleTable.getFatherNodeKey());
-            }
-        }
-
-        Set<RelationTupleTable> result = new HashSet<>();
-        for (String nodeId : oneStageNodeId) {
-            List<RelationTupleTable> relations = getAlloneStageRelationTuple(nodeId);
-            result.addAll(relations);
-        }
-        result.removeIf(relationTupleTable -> !oneStageNodeId.contains(relationTupleTable.getFatherNodeKey()) || !oneStageNodeId.contains(relationTupleTable.getChildNodeKey()));
-        List<RelationTupleTable> a = new ArrayList<>(result);
-        oneStageRelationTupleTable.addAll(a);
-
-        // return transformRelationTupleTableintoTableKeywords(oneStageRelationTupleTable);
-        return oneStageRelationTupleTable;
-
-    }
 
     public NodeEntityTable getNodeEntityByNodeKey(String nodeEntityKey) {
         return nodeEntityTableMapper.getNodeEntityByNodeKey(nodeEntityKey);
